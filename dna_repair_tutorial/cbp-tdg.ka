@@ -2,7 +2,6 @@
 # Chapter 'CBP-TDG'
 #^ :comment "structure of TDG"; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 5; :from_chunk 2; :to_chunk 20; :from_token 1; :to_token 1 .
 
-# 'CBP--TDG' CBP(tdg),TDG(rd~u) -> CBP(tdg!1),TDG(rd~u!1) @ 1.0 # Inactive rule
 
 'CBP--TDG Ref1' CBP(tdg,chr),TDG(rd~u) -> CBP(tdg!1,chr),TDG(rd~u!1) @ 1.0
 'CBP--TDG Ref2' CBP(tdg,chr!1),TDG(rd~u,N140,dnmt3a,lig),DNA(chr!1) -> CBP(tdg!1,chr!2),TDG(rd~u!1,N140,dnmt3a,lig),DNA(chr!2) @ 1.0

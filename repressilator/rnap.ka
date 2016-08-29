@@ -1,6 +1,8 @@
 
 # Transcription factor binding to promoter region.
 
+#^ :source :translation.ka
+
 %var: 'transcription factor binding rate' 0.01
 
 'LacI binding to R0010p2 (no LacI)' \

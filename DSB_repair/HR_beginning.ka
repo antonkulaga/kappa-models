@@ -1,22 +1,87 @@
 #The first stages of HR, before the trifurcation of this pathway. Coefficients are unknown for me now.
+%var: 'MRXprocessing' 1.0
+%var: 'nucleation' 1.0
+%var: 'Rad51-dissociation' 1.0
+%var: 'Rad55-Rad57-mediation' 1.0
+%var: 'RPA-bind' 10.0
+%var: 'Rad51-bind' 1.0
+%var: 'Rad51-ds-bind' 1.0
+%var: 'Rad51-poly' 1.0
+%var: 'Rad54-Rad51-binding' 1.0
+%var: 'invasion' 1.0
+%var: 'homology-search' 1.0
 
+#DNAse
 
 #Presynapsis
-  'MRX/N processing' dna(dna!2, rad51, mrx), ssdna(dna!2, rpa, rad51), Mre11-Rad50-Xrs2(dna) -> \
-dna(dna!2, rad51, mrx!3), ssdna(dna!2, rpa, rad51), Mre11-Rad50-Xrs2(dna!3)@ 1.0
-  'RPA binding' RPA(dna),dna(dna!2, rad51, mrx!3), ssdna(dna!2, rpa, rad51), Mre11-Rad50-Xrs2(dna!3) \
-->  RPA(dna!1),dna(dna!2, rad51, mrx!3), ssdna(dna!2, rpa!1, rad51), Mre11-Rad50-Xrs2(dna!3) @ 10.0
-   'Rad52 and Rad51 complexing' Rad52(rad51), Rad51(dna, rad52) -> Rad52(rad51!4), Rad51(dna, rad52!4)\
-@ 1.0
-   'Rad51-52 complex binding' RPA(dna!1),dna(dna!2, rad51, mrx!3), ssdna(dna!2, rpa!1, rad51), \
-Mre11-Rad50-Xrs2(dna!3), Rad52(rad51!4), Rad51(dna, rad52!4) ->RPA(dna!1),dna(dna!2, rad51, mrx!3),\
-ssdna(dna!2, rpa!1, rad51!5), Mre11-Rad50-Xrs2(dna!3), Rad52(rad51!4), Rad51(dna!5, rad52!4) @ 1.0
+  'MRX/N processing' \
+dna(upstream!1, pair!3), dna(downstream!1, pair!4, binding), dna(upstream!2, pair!3), dna(downstream!2, pair!4), Mre11-Rad50-Xrs2(dna)\
+->  dna(upstream!1, pair), dna(downstream!1, pair!4, binding!5), dna(upstream, pair), dna(downstream, pair!4), Mre11-Rad50-Xrs2(dna!5) \
+@ 'MRXprocessing'
 
-#It was some problem for me: how to rightly code the binding between DNA strands
-#I
+  'RPA binding' \
+RPA(dna), dna(upstream!1, pair, binding), dna(downstream!1, pair!4), dna(pair!4) \
+->  RPA(dna!3), dna(upstream!1, pair, binding!3), dna(downstream!1, pair!4), dna(pair!4) \
+@ 'RPA-bind'
+
+   'Rad51 dsDNA binding' \
+dna(pair!4, binding), dna(pair!4, binding), Rad51(dna)  \
+-> dna(pair!4, binding), dna(pair!4, binding!2), Rad51(dna!2) \
+@ 'Rad51-ds-bind'
+   
+   'Rad51 nucleation' \
+Rad52(rad51), Rad51(rad52) -> \
+Rad52(rad51!6), Rad51(rad52!6) \
+@ 'nucleation'
+
+   'Rad51-Rad52 complex binding' \
+RPA(dna!3), Rad52(rad51!6), Rad51(rad52!6, dna), dna(upstream!1, pair, binding!3), dna(downstream!1, pair!4), dna(pair!4) \
+ -> RPA(dna), Rad52(rad51!6), Rad51(rad52!6, dna!3), dna(upstream!1, pair, binding!3), dna(downstream!1, pair!4), dna(pair!4) \
+@ 'Rad51-bind'
+
+   'Rad51 polymerization'  \
+ Rad52(rad51!6), Rad51(rad52!6, dna!3, upstream), Rad51(dna, upstream, downstream), dna(upstream!1, pair, binding!3), dna(downstream!1, pair!4), dna(pair!4) \
+ -> Rad52(rad51!6), Rad51(rad52!6, dna!3,upstream!7), Rad51(dna!_, upstream, downstream!7), dna(upstream!1, pair, binding!3), dna(downstream!1, pair!4), dna(pair!4) \
+@ 'Rad51-poly'
+   
+   #Rad55-Rad57 should not be binded
+   'Srs2-regulated dissociation' \
+Rad51(dna!1, med), dna(upstream!_, downstream!_, pair, binding!1), Srs2(rad51, rad55-rad57) -> \
+Rad51(dna, med!2), dna(upstream!_,  downstream!_, pair, binding), Srs2(rad51!2, rad55-rad57) \
+@ 'Rad51-dissociation'
+#^ :in_paper :DSB_REPAIR/Rad55-Rad57%20paralogs%20functions.pdf; :on_page 4; :from_chunk 0; :to_chunk 1; :from_token 1; :to_token 1 .
+#I'm do not sure for the binding Rad55-Rad57 with Rad51. Alex
+
+   'Rad55-Rad57-mediated Srs2 catching' \
+Rad55-Rad57(srs2), Srs2(rad55-rad57) \
+-> Rad55-Rad57(srs2!1), Srs2(rad55-rad57!1) \
+@ 'Rad55-Rad57-mediation'
+
+#^ :in_paper :DSB_REPAIR/heyer2007.pdf; :on_page 19; :from_chunk 5; :to_chunk 5; :from_token 5; :to_token 9 .
+#there are unclear here about binding site of Rad54
+   'Rad54 binding' \
+Rad51(dna!1, med), dna(upstream!_,  downstream!_, pair, binding!1), Rad54(rad51) \
+-> Rad51(dna!1, med!2), dna(upstream!_,  downstream!_, pair, binding!1), Rad54(rad51!2) \
+@ 'Rad54-Rad51-binding'
+
 
 #Synapsis
 
+   'Rad51-mediated homology search' \
+Rad51(dna!3,upstream!7), Rad51(dna, upstream, downstream!7, homo, med!6),  Rad54(rad51!6), dna(pair, binding!3), sisdna(homo, pair!2), sisdna(homo, pair!2) \
+-> Rad51(dna!3,upstream!7), Rad51(dna, upstream, downstream!7, homo!4, med!6), Rad54(rad51!6), dna(pair, binding!3), sisdna(homo!4, pair!2), sisdna(homo, pair!2)\
+@ 'homology-search'
+
+
+#need to determine the role of Rad54 in DNA binding and homology search
+#^ :in_paper :DSB_REPAIR/heyer2007.pdf; :on_page 20; :from_chunk 14; :to_chunk 21; :from_token 8; :to_token 3 .
+
+   'Single strand invasion' \
+Rad51(dna!3,upstream!7), Rad51(dna, upstream, downstream!7, homo!4), dna(pair, binding!3), sisdna(homo!4, pair!2), sisdna(homo, pair!2) \
+-> Rad51(dna!3,upstream!7), Rad51(dna, upstream, downstream!7, homo!4), dna(pair!2, binding!3), sisdna(homo!4, pair!2), sisdna(homo, pair)\
+@ 'invasion'
+
+# 'Chain elongation'
 
 
 

@@ -1,0 +1,41 @@
+### DNA REPAIR MODEL TUTORIAL ###
+#
+# This is an introduction to DNA repair modelling tutorial, 
+# click on icons near line numbers for more info.
+#
+#^:comment "The purpose of this tutorial..."; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 2; :from_chunk 0; :to_chunk 18; :from_token 1; :to_token 1 .
+# This tutorial is based on a simplified DNA repair model, that takes into account methylation
+#^:comment "Introduction"; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 2; :from_chunk 45; :to_chunk 56; :from_token 1; :to_token 11 .
+#^:comment "The problem"; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 3; :from_chunk 37; :to_chunk 46; :from_token 1; :to_token 9 .
+#
+# The core interactions of the model are described in the following figure:
+#^:comment "Figure 2 - Interactions"; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 4; :from_chunk 38; :to_chunk 84; :from_token 1; :to_token 7 .
+#
+### Main files ###
+#
+# The interacting agents are described at:
+#^ :source :agents.ka
+# The initial conditions:
+#^ :source :init.ka
+# The process of spontaneous mutation of T to U (deanimation) is at:
+#^ :source :deanimation.ka
+# The repair process itself is at: 
+#^ :source :repair.ka
+# As we assume to have eucariotic cell it is imporant to model chromatic openning/closing at:
+#^ :source :chromatin.ka
+# The key cdp-tdg interactions in the model are described at:
+#^ :source :cbp-tdg.ka
+# The initial conditions of our model are described at:
+#^ :source :init.ka
+#
+### Core user interface features ###
+#
+# * You can move between different tabs by scrolling or clicking on items of top menu
+# * You can move tabs by drag & droping items in the top menu,
+# it is typical to have editor in one tab and drag the tab you are currently working on to the right
+# To see visualization of the rule just put a cursor on it and look into visualization tab
+# To make a clickable link write a comment #^ <http://somelink.com>
+# To make a link to a place in the paper - open the paper in the Papers tab, select the text and insert the comment
+# generated in the tab by "Insert comment button" or by copy-pasting
+# To make a link to the source file use #^ :source filename.ka ; :line 10
+# To make a link to the youtube video use #^ :video <http://youtube.com/video_address>

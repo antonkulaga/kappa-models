@@ -1,0 +1,14 @@
+### This is a repressilator model ###
+#It works but not fully annotated
+
+### Core user interface features ###
+#
+# * You can move between different tabs by scrolling or clicking on items of top menu
+# * You can move tabs by drag & droping items in the top menu,
+# it is typical to have editor in one tab and drag the tab you are currently working on to the right
+# To see visualization of the rule just put a cursor on it and look into visualization tab
+# To make a clickable link write a comment #^ <http://somelink.com>
+# To make a link to a place in the paper - open the paper in the Papers tab, select the text and insert the comment
+# generated in the tab by "Insert comment button" or by copy-pasting
+# To make a link to the source file use #^ :source filename.ka ; :line 10
+# To make a link to the youtube video use #^ :video <http://youtube.com/video_address>
