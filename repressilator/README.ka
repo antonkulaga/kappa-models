@@ -1,8 +1,28 @@
-### This is a repressilator model ###
-#It works but not fully annotated
+### Repressilator model ###
+
+# Repressilator is a 3-genes genetic circuit
+#^ :comment "more info about repressilator"; :in_paper :repressilator/Repressilator.pdf; :on_page 1; :from_chunk 146; :to_chunk 162; :from_token 8; :to_token 3 .
+#
+# that makes bacteria oscilate like in this microscope video:
+#^ :comment "Microscope video"; :video <https://www.youtube.com/watch?v=HFwSnqYC5LA>
+#
+# Repressilator consists of 3 genes that inhibit each other:
+#^ :comment "Repressilator plasmid map: TetR inhibits Cl, Cl inhibits LacI, lacI inhibits TetR"; :image :repressilator_light/plasmid.png
+
+# This model is based on the Thomson's repressilator model created in 2009.
+
+### Main files ###
+#
+#^ :comment "The interacting agents"; :source :agents.ka
+#^ :comment "The initial conditions of the model"; :source :init.ka
+#^ :comment "Regulation with transcription factors"; :source :regulation.ka
+#^ :comment "Transcription initialization"; :source :rnap.ka
+#^ :comment "The transcription process"; :source :transcription.ka
+#^ :comment "The translation process"; :source :translation.ka
+#^ :comment "Degradation of proteins"; :source :degradation.ka
 
 ### Core user interface features ###
-#
+
 # * You can move between different tabs by scrolling or clicking on items of top menu
 # * You can move tabs by drag & droping items in the top menu,
 # it is typical to have editor in one tab and drag the tab you are currently working on to the right

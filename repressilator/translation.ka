@@ -1,5 +1,7 @@
-
-# Translation.
+### Translation ###
+#
+#Part of the model responsible for translation or repressilator mRNAs to proteins
+#^ :comment "translation is production of proteins based on mRNA information" ; :video <https://www.youtube.com/watch?v=kbB2kMkmb0w>
 
 %var: 'ribosome binding rate' 0.000166
 

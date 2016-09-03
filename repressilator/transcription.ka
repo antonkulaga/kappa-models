@@ -1,9 +1,15 @@
-
-# Transcription.
+### Transcription ###
+#
+# This is a part of the model describing transcriptions of the repressilator plasmid
+#
+#^ :comment "transcription is copying of DNA to RNA"; :video <https://www.youtube.com/watch?v=5MfSYnItYvg>
 
 %var: 'transcription initiation rate' 10
 %var: 'transcription rate' 10
 %var: 'transcription termination rate' 10
+
+#NOTE: the first step is described at:
+# :source inhibion.ka
 
 'Transcription initiation of R0051' \
 	DNA(binding!1,type~BBaR0051p4,downstream!2), RNAP(dna!1,rna), DNA(upstream!2,binding) -> \

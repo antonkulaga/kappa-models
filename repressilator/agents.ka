@@ -1,8 +1,3 @@
-# Core repressilator model - last update 29-03-2011
-# The core repressilator model was developed initially by Ty Thomson in 2009.
-# And modified by  Edinburgh 2010 iGEM Team
-#^ :in_paper Kanamori.pdf
-# Modified by Edinbourg IGEM team
 # Repressilator video:
 #^ :video <https://www.youtube.com/watch?v=HFwSnqYC5LA>
 
@@ -13,11 +8,10 @@
 #^ :image :dna_repair_tutorial/kappa_biobrick.jpg
 # Extended repressilator
 #^ :image 800px-Ed10-OverallPathway.png
-
 # within this model type sitie is used to represent various BioBrick sequences
 %agent: DNA(binding,downstream,type\
 	#transcription terminator\
-    ~BBaB0011 #^ http://parts.igem.org/Part:BBaB0011 \
+	~BBaB0011 #^ http://parts.igem.org/Part:BBaB0011 \
     # ribosome binding site\
     ~BBaB0034 #^ http://parts.igem.org/Part:BBaB0034 \
     # lacI coding sequence \

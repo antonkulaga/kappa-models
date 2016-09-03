@@ -1,46 +1,49 @@
 
 #### Signatures
 
-#^ :image plasmid.png
-#^ :video https://www.youtube.com/watch?v=HFwSnqYC5LA
+#^ :comment "Repressilator plasmid map"; :image :repressilator_light/plasmid.png
+#^ :comment "Microscope video"; :video <https://www.youtube.com/watch?v=HFwSnqYC5LA>
 
+%agent: pLac(binding)
+%agent: pTet(binding)
+%agent: pL(binding)
 
-%agent: pLac(up, binding, down)
-%agent: pTet(up, binding, down)
-%agent: pL(up, binding, down)
 %agent: LacI(dna)
 %agent: TetR(dna)
-%agent: cl(dna)
+%agent: cI(dna)
 
 
 #### Variables 
 %var: 'synth'   0.1
 %var: 'binding' 0.1
 %var: 'unbinding' 0.0001
-%var: 'degrad1' 0.001
-%var: 'degrad2' 0.001
+%var: 'degrad' 0.001
 
+%var: 'off_rate' 0.1 # per second
 
-%var: 'off_rate' 0.1 # per second 
 %var: 'mod_rate' 1 # per second 
 
-'tetR.synthesis' pLac(binding) -> pLac(binding), TetR() @ 'synth'
 'LacI.Lac' pLac(binding),LacI(dna) <-> pLac(binding!1),LacI(dna!1) @ 'binding' ,'unbinding'
-'lacI.synthesis' pL(binding) -> pL(binding),LacI() @ 'synth'
-'pl.cl' pL(binding),cl(dna) <-> pL(binding!1),cl(dna!1) @ 'binding' ,'unbinding'
-'cl.synthesis' pTet(binding) -> pTet(binding),cl() @ 'synth'
-'pTet.TetR' pTet(binding),TetR(dna) <-> pTet(binding!1),TetR(dna!1) @ 'binding' ,'unbinding'
+'tetR.synthesis' pLac(binding) -> pLac(binding), TetR() @ 'synth'
+'tetR.degrad' TetR() ->  @ 'degrad'
 
-'tetR.degradation' TetR(dna) ->  @ 'degrad1'
-'tetR.degradation2' pTet(binding!1),TetR(dna!1) ->  pTet(binding) @ 'degrad2'
-'lacI.degradation' LacI(dna) ->  @ 'degrad1'
-'lacI.degradation2' pLac(binding!1),LacI(dna!1) ->  pLac(binding) @ 'degrad2'
-'cL.degradation' cl(dna) ->  @ 'degrad1'
-'pL.degradation' pL(binding!1),cl(dna!1) -> pL(binding) @ 'degrad2'
+'pL.cI' pL(binding),cI(dna) <-> pL(binding!1),cI(dna!1) @ 'binding' ,'unbinding'
+'lacI.synthesis' pL(binding) -> pL(binding),LacI() @ 'synth'
+'lacI.degrad' LacI() ->  @ 'degrad'
+
+'pTet.TetR' pTet(binding),TetR(dna) <-> pTet(binding!1),TetR(dna!1) @ 'binding' ,'unbinding'
+'cI.synthesis' pTet(binding) -> pTet(binding),cI() @ 'synth'
+'cI.degrad' cI() ->  @ 'degrad'
 
 %obs: 'LacI' LacI()
 %obs: 'TetR' TetR()
-%obs: 'cl' cl()
+%obs: 'cI' cI()
+
+#%obs: 'pLac<->LacI' pLac(binding!1), LacI(dna!1)
+#%obs: 'pTet<->TetR' pTet(binding!1), TetR(dna!1)
+#%obs: 'pL<->CI' pL(binding!1), cI(dna!1)
 
 #### Initial conditions 
 %init: 25 pLac(binding),pTet(binding),pL(binding)
+
+#%mod: [true] do $FLUX "flux" [true]
