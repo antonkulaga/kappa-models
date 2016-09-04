@@ -1,27 +1,32 @@
+### Repressilator model ###
+
+# Repressilator is a 3-genes genetic circuit
+#^ :comment "more info about repressilator"; :in_paper :repressilator/Repressilator.pdf; :on_page 1; :from_chunk 146; :to_chunk 162; :from_token 8; :to_token 3 .
+#
+# that makes bacteria oscilate like in this microscope video:
+#^ :comment "Microscope video"; :video <https://www.youtube.com/watch?v=HFwSnqYC5LA>
+#^:comment "the oscilation period is more than an hour"; :in_paper :repressilator/Repressilator.pdf; :on_page 2; :from_chunk 253; :to_chunk 280; :from_token 1; :to_token 2 .
+
+#
+# Repressilator consists of 3 genes that inhibit each other:
+#^ :comment "Repressilator plasmid map: TetR inhibits Cl, Cl inhibits LacI, lacI inhibits TetR"; :image :repressilator_light/plasmid.png
+#^ :comment "the intuition behind how circuit works is explained here"; :video <https://www.youtube.com/watch?v=kOYafafPLQ0>
 
 #### Signatures
-
-#^ :comment "Repressilator plasmid map"; :image :repressilator_light/plasmid.png
-#^ :comment "Microscope video"; :video <https://www.youtube.com/watch?v=HFwSnqYC5LA>
 
 %agent: pLac(binding)
 %agent: pTet(binding)
 %agent: pL(binding)
 
-%agent: LacI(dna)
-%agent: TetR(dna)
-%agent: cI(dna)
-
+%agent: LacI(dna) #^ <http://www.uniprot.org/uniprot/P03023>
+%agent: TetR(dna) #^ <https://www.addgene.org/tetracycline/#off>
+%agent: cI(dna) #^ <http://www.uniprot.org/uniprot/Q7B004>
 
 #### Variables 
 %var: 'synth'   0.1
 %var: 'binding' 0.1
 %var: 'unbinding' 0.0001
 %var: 'degrad' 0.001
-
-%var: 'off_rate' 0.1 # per second
-
-%var: 'mod_rate' 1 # per second 
 
 'LacI.Lac' pLac(binding),LacI(dna) <-> pLac(binding!1),LacI(dna!1) @ 'binding' ,'unbinding'
 'tetR.synthesis' pLac(binding) -> pLac(binding), TetR() @ 'synth'
@@ -46,4 +51,4 @@
 #### Initial conditions 
 %init: 25 pLac(binding),pTet(binding),pL(binding)
 
-#%mod: [true] do $FLUX "flux" [true]
+%mod: [true] do $FLUX "flux" [true]

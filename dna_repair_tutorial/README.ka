@@ -1,16 +1,18 @@
 ### DNA REPAIR MODEL TUTORIAL ###
-#
+
 # This is an introduction to DNA repair modelling tutorial, 
 # click on icons near line numbers for more info.
-#
+
 #^:comment "The purpose of this tutorial..."; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 2; :from_chunk 0; :to_chunk 18; :from_token 1; :to_token 1 .
 # This tutorial is based on a simplified DNA repair model, that takes into account methylation
 #^:comment "Introduction"; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 2; :from_chunk 45; :to_chunk 56; :from_token 1; :to_token 11 .
 #^:comment "The problem"; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 3; :from_chunk 37; :to_chunk 46; :from_token 1; :to_token 9 .
-#
+
 # The core interactions of the model are described in the following figure:
 #^:comment "Figure 2 - Interactions"; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 4; :from_chunk 38; :to_chunk 84; :from_token 1; :to_token 7 .
-#
+
+
+
 ### Main files ###
 #
 # The interacting agents are described at:

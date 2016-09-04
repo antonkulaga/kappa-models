@@ -8,8 +8,10 @@
 %var: 'transcription rate' 10
 %var: 'transcription termination rate' 10
 
-#NOTE: the first step is described at:
-# :source inhibion.ka
+#NOTE: the first steps are described at:
+# :source :regulation.ka
+# :source :rnap.ka
+
 
 'Transcription initiation of R0051' \
 	DNA(binding!1,type~BBaR0051p4,downstream!2), RNAP(dna!1,rna), DNA(upstream!2,binding) -> \

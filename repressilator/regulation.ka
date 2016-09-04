@@ -1,6 +1,11 @@
-# Transcription factor binding to promoter region.
+### Transcription factor binding to promoter region. ###
 
 %var: 'transcription factor binding rate' 0.01
+
+#LacI binding
+
+%var: 'sole LacI transcription factor unbinding rate' 2.24
+%var: 'non-sole LacI transcription factor unbinding rate' 0.09
 
 'LacI binding to R0010p2 (no LacI)' \
 	DNA(binding,type~BBaR0010p3,upstream!2), LacI(dna,lactose), DNA(downstream!2,binding,type~BBaR0010p2) -> \
@@ -15,6 +20,23 @@
 	DNA(binding,type~BBaR0010p3,upstream!2), LacI(dna!1), DNA(downstream!2,binding!1,type~BBaR0010p2), LacI(dna,lactose) -> \
 	DNA(binding!1,type~BBaR0010p3,upstream!3), LacI(dna!2), DNA(downstream!3,binding!2,type~BBaR0010p2), LacI(dna!1,lactose) @ 'transcription factor binding rate'
 
+#LacI unbinding
+
+'Reverse LacI binding to R0010p2 (no LacI)' \
+	DNA(binding,type~BBaR0010p3,upstream!3), LacI(dna!1,lactose), DNA(downstream!3,binding!1,type~BBaR0010p2) -> \
+	DNA(binding,type~BBaR0010p3,upstream!2), LacI(dna,lactose), DNA(downstream!2,binding,type~BBaR0010p2) @ 'sole LacI transcription factor unbinding rate'
+'Reverse LacI binding to R0010p2 (LacI bound)' \
+	DNA(binding!2,type~BBaR0010p3,upstream!3), LacI(dna!2), DNA(downstream!3,binding!1,type~BBaR0010p2), LacI(dna!1,lactose) -> \
+	DNA(binding!1,type~BBaR0010p3,upstream!2), LacI(dna!1), DNA(downstream!2,binding,type~BBaR0010p2), LacI(dna,lactose) @ 'non-sole LacI transcription factor unbinding rate'
+'Reverse LacI binding to R0010p3 (no LacI)' \
+	DNA(binding!1,type~BBaR0010p3,upstream!3), LacI(dna!1,lactose), DNA(downstream!3,binding,type~BBaR0010p2) -> \
+	DNA(binding,type~BBaR0010p3,upstream!2), LacI(dna,lactose), DNA(downstream!2,binding,type~BBaR0010p2) @ 'sole LacI transcription factor unbinding rate'
+'Reverse LacI binding to R0010p3 (LacI bound)' \
+	DNA(binding!1,type~BBaR0010p3,upstream!3), LacI(dna!2), DNA(downstream!3,binding!2,type~BBaR0010p2), LacI(dna!1,lactose) -> \
+	DNA(binding,type~BBaR0010p3,upstream!2), LacI(dna!1), DNA(downstream!2,binding!1,type~BBaR0010p2), LacI(dna,lactose) @ 'non-sole LacI transcription factor unbinding rate'
+
+#TetR binding
+
 'TetR binding to R0040p2 (no TetR)' \
 	DNA(binding,type~BBaR0040p3,upstream!2), TetR(dna,atc), DNA(downstream!2,binding,type~BBaR0040p2) -> \
 	DNA(binding,type~BBaR0040p3,upstream!3), TetR(dna!1,atc), DNA(downstream!3,binding!1,type~BBaR0040p2) @ 'transcription factor binding rate'
@@ -27,6 +49,29 @@
 'TetR binding to R0040p3 (TetR bound)' \
 	DNA(binding,type~BBaR0040p3,upstream!2), TetR(dna,atc), TetR(dna!1), DNA(downstream!2,binding!1,type~BBaR0040p2) -> \
 	DNA(binding!2,type~BBaR0040p3,upstream!3), TetR(dna!2,atc), TetR(dna!1), DNA(downstream!3,binding!1,type~BBaR0040p2) @ 'transcription factor binding rate'
+
+#TetR unbinding
+
+
+%var: 'sole TetR transcription factor unbinding rate' 2.24
+%var: 'non-sole TetR transcription factor unbinding rate' 0.09
+
+'Reverse TetR binding to R0040p2 (no TetR)' \
+	DNA(binding,type~BBaR0040p3,upstream!3), TetR(dna!1,atc), DNA(downstream!3,binding!1,type~BBaR0040p2) -> \
+	DNA(binding,type~BBaR0040p3,upstream!2), TetR(dna,atc), DNA(downstream!2,binding,type~BBaR0040p2) @ 'sole TetR transcription factor unbinding rate'
+'Reverse TetR binding to R0040p2 (TetR bound)' \
+	DNA(binding!2,type~BBaR0040p3,upstream!3), TetR(dna!2), TetR(dna!1,atc), DNA(downstream!3,binding!1,type~BBaR0040p2) -> \
+	DNA(binding!1,type~BBaR0040p3,upstream!2), TetR(dna!1), TetR(dna,atc), DNA(downstream!2,binding,type~BBaR0040p2) @ 'non-sole TetR transcription factor unbinding rate'
+'Reverse TetR binding to R0040p3 (no TetR)' \
+	DNA(binding!1,type~BBaR0040p3,upstream!3), TetR(dna!1,atc), DNA(downstream!3,binding,type~BBaR0040p2) -> \
+	DNA(binding,type~BBaR0040p3,upstream!2), TetR(dna,atc), DNA(downstream!2,binding,type~BBaR0040p2) @ 'sole TetR transcription factor unbinding rate'
+'Reverse TetR binding to R0040p3 (TetR bound)' \
+	DNA(binding!2,type~BBaR0040p3,upstream!3), TetR(dna!2,atc), TetR(dna!1), DNA(downstream!3,binding!1,type~BBaR0040p2) -> \
+	DNA(binding,type~BBaR0040p3,upstream!2), TetR(dna,atc), TetR(dna!1), DNA(downstream!2,binding!1,type~BBaR0040p2) @ 'non-sole TetR transcription factor unbinding rate'
+
+
+#cI binding
+
 'cI binding to R0051p2 (no cI)' \
 	DNA(binding,type~BBaR0051p3,upstream!2), cI(dna), DNA(downstream!2,binding,type~BBaR0051p2) -> \
 	DNA(binding,type~BBaR0051p3,upstream!3), cI(dna!1), DNA(downstream!3,binding!1,type~BBaR0051p2) @ 'transcription factor binding rate'
@@ -39,3 +84,22 @@
 'cI binding to R0051p3 (cI bound)' \
 	DNA(binding,type~BBaR0051p3,upstream!2), cI(dna!1), cI(dna), DNA(downstream!2,binding!1,type~BBaR0051p2) -> \
 	DNA(binding!1,type~BBaR0051p3,upstream!3), cI(dna!2), cI(dna!1), DNA(downstream!3,binding!2,type~BBaR0051p2) @ 'transcription factor binding rate'
+
+#cI unbinding
+
+%var: 'sole cI transcription factor unbinding rate' 2.24
+%var: 'non-sole cI transcription factor unbinding rate' 0.09
+'Reverse cI binding to R0051p2 (no cI)' \
+	DNA(binding,type~BBaR0051p3,upstream!3), cI(dna!1), DNA(downstream!3,binding!1,type~BBaR0051p2) -> \
+	DNA(binding,type~BBaR0051p3,upstream!2), cI(dna), DNA(downstream!2,binding,type~BBaR0051p2) @ 'sole cI transcription factor unbinding rate'
+'Reverse cI binding to R0051p2 (cI bound)' \
+	DNA(binding!2,type~BBaR0051p3,upstream!3), cI(dna!1), cI(dna!2), DNA(downstream!3,binding!1,type~BBaR0051p2) -> \
+	DNA(binding!1,type~BBaR0051p3,upstream!2), cI(dna), cI(dna!1), DNA(downstream!2,binding,type~BBaR0051p2) @ 'non-sole cI transcription factor unbinding rate'
+'Reverse cI binding to R0051p3 (no cI)' \
+	DNA(binding!1,type~BBaR0051p3,upstream!3), cI(dna!1), DNA(downstream!3,binding,type~BBaR0051p2) -> \
+	DNA(binding,type~BBaR0051p3,upstream!2), cI(dna), DNA(downstream!2,binding,type~BBaR0051p2) @ 'sole cI transcription factor unbinding rate'
+'Reverse cI binding to R0051p3 (cI bound)' \
+	DNA(binding!1,type~BBaR0051p3,upstream!3), cI(dna!2), cI(dna!1), DNA(downstream!3,binding!2,type~BBaR0051p2) -> \
+	DNA(binding,type~BBaR0051p3,upstream!2), cI(dna!1), cI(dna), DNA(downstream!2,binding!1,type~BBaR0051p2) @ 'non-sole cI transcription factor unbinding rate'
+
+

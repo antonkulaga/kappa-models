@@ -4,7 +4,6 @@
 
 %var: 'transcription factor degradation rate' 0.00115
 
-
 'LacI degradation' LacI(dna) ->  @ 'transcription factor degradation rate'
 'TetR degradation' TetR(dna) ->  @ 'transcription factor degradation rate'
 'cI degradation' cI(dna) ->  @ 'transcription factor degradation rate'

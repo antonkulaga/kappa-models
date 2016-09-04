@@ -20,25 +20,27 @@
     ~BBaC0040 #^ http://parts.igem.org/Part:BBaC0040 \
     # lambda-cI coding sequence\
     ~BBaC0051 #^ http://parts.igem.org/Part:BBaC0051 \
-     #lacI promoter\
+     #lacI promoter regions\
     ~BBaR0010p1 #^ http://parts.igem.org/Part:BBaR0010 \
     ~BBaR0010p2\
     ~BBaR0010p3\
     ~BBaR0010p4\
-     #tetR promoter\
+     #tetR promoter regions\
     ~BBaR0040p1 #^ http://parts.igem.org/Part:BBaR0040 \
     ~BBaR0040p2\
     ~BBaR0040p3\
     ~BBaR0040p4\
-     #lambda-cI promoter\
+     #lambda-cI promoter regions\
     ~BBaR0051p1 #^ http://parts.igem.org/Part:BBaR0051 \
     ~BBaR0051p2\
     ~BBaR0051p3\
     ~BBaR0051p4,\
     upstream)
-%agent: LacI(lactose,dna) #^ http://www.uniprot.org/uniprot/P03023
 %agent: RNA(downstream,upstream,type~BBaB0034~BBaC0012~BBaC0040~BBaC0051~BBaR0010~BBaR0040~BBaR0051,binding)
-%agent: RNAP(rna,dna)
+
+%agent: RNAP(rna,dna) #^ https://en.wikipedia.org/wiki/RNA_polymerase
 %agent: Ribosome(rna)
-%agent: TetR(atc,dna) #^ https://www.addgene.org/tetracycline/#off
-%agent: cI(dna)
+
+%agent: LacI(lactose,dna) #^ <http://www.uniprot.org/uniprot/P03023>
+%agent: TetR(atc,dna) #^ <https://www.addgene.org/tetracycline/#off>
+%agent: cI(dna) #^ <http://www.uniprot.org/uniprot/Q7B004>
