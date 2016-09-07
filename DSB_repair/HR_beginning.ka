@@ -68,17 +68,20 @@ Rad55-Rad57(srs2), Srs2(rad55-rad57) \
 
 #^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 19; :from_chunk 5; :to_chunk 5; :from_token 5; :to_token 9 .
 #there are unclear here about binding site of Rad54
+
+#^ :in_paper DSB_repair/Rad54:%20the%20Swiss%20Army%20knife%20of%20homologous%20recombination.pdf; :on_page 5; :from_chunk 129; :to_chunk 135; :from_token 5; :to_token 7 .
+#here: Rad54 binds to the Rad51 on the ending nucleotide - before the DSB
    'Rad54 binding' \
-Rad51(dna!1, med), dna(upstream!_,  downstream!_, pair, binding!1), Rad54(rad51) \
--> Rad51(dna!1, med!2), dna(upstream!_,  downstream!_, pair, binding!1), Rad54(rad51!2) \
+Rad51(dna!1, med, upstream), dna(upstream, pair, binding!1), Rad54(rad51) \
+-> Rad51(dna!1, med!2, upstream), dna(upstream, pair, binding!1), Rad54(rad51!2) \
 @ 'Rad54-Rad51-binding'
 
 
 #Synapsis
 
    'Rad51-mediated homology search' \
-Rad51(dna!3,upstream!7), Rad51(dna, upstream, downstream!7, med!6),  Rad54(rad51!6), dna(pair, upstream, binding!3), sisdna(homo, pair!2), sisdna(homo, pair!2) \
--> Rad51(dna!3,upstream!7), Rad51(dna!4, upstream, downstream!7, med!6), Rad54(rad51!6), dna(pair, upstream, binding!3), sisdna(homo!4, pair!2), sisdna(homo, pair!2)\
+Rad51(dna!3,upstream!7), Rad51(dna, upstream, downstream!7, med!6),  Rad54(rad51!6, dna), dna(pair, upstream, binding!3), sisdna(homo, pair!2), sisdna(homo, pair!2, chr~closed) \
+-> Rad51(dna!3,upstream!7), Rad51(dna!4, upstream, downstream!7, med!6), Rad54(rad51!6, dna!5), dna(pair, upstream, binding!3), sisdna(homo!4, pair!2), sisdna(homo, pair!2,chr~closed!5)\
 @ 'homology-search'
 
 
@@ -87,10 +90,10 @@ Rad51(dna!3,upstream!7), Rad51(dna, upstream, downstream!7, med!6),  Rad54(rad51
 
 
 #chromatin open
-   'Rad52 chromatin open' \
-Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair, upstream, binding!3), sisdna(homo!4, pair!2), sisdna(homo, pair!2, chr~opened!5) \
+   'Rad54 chromatin open' \
+Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair, upstream, binding!3), sisdna(homo!4, pair!2), sisdna(homo, pair!2, chr~closed!5) \
 -> Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair!2, upstream, binding!3), sisdna(homo!4, pair!2), sisdna(homo, pair, chr~opened!5)\
-@ 'invasion'
+@ 'chromatin-open'
    
    'Single strand invasion, D-Loop forming' \
 Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair, upstream, binding!3), sisdna(homo!4, pair!2, chr~opened), sisdna(homo, pair!2, chr~opened!5) \
@@ -103,7 +106,6 @@ Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstrea
 Rad54(rad51!6, dna!_), Rad51(dna!3, med!6), dna(pair!2, binding!3), sisdna(pair!2) \
 -> Rad54(rad51, dna!6), Rad51(dna, med), dna(pair!2, binding!6), sisdna(pair!2) \
 @ 'Rad51-turnover'
-
 
  'DNA elongation by DNA-polymerase eta' \
 Rad51(dna!3,upstream!7), Rad51(dna!4, upstream, downstream!7, med), DNAPeta(dna, newdna), dna(pair, upstream, binding!3), sisdna(homo!4, pair!2), sisdna(homo, pair!2) \

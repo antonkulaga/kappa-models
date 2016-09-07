@@ -1,7 +1,9 @@
+#^ :in_paper DSB_repair/Rad54:%20the%20Swiss%20Army%20knife%20of%20homologous%20recombination.pdf; :on_page 3; :from_chunk 0; :to_chunk 0; :from_token 1; :to_token 1 .
 #^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 11; :from_chunk 0; :to_chunk 7; :from_token 1; :to_token 5 .
 
 %agent: dna(upstream, downstream, pair, binding, chr~opened~closed)
 %agent: sisdna(upstream, downstream, dna, pair, homo, chr~opened~closed)
+%agent: CRISPR-Cas9(dna)
 
 #HR initiation and beginning
 #%agent: Sgs1() ??
