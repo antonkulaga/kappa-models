@@ -28,6 +28,8 @@
 %obs: 'TetR' TetR()
 %obs: 'cI' cI()
 
+%mod: [true] do $FLUX "flux" [true]
+
 #%obs: 'LacI<->DNA' LacI(dna!1), DNA(binding!1) 
 #%obs: 'TetR<->DNA' TetR(dna!1), DNA(binding!1) 
 #%obs: 'cI<->DNA' cI(dna!1), DNA(binding!1) 

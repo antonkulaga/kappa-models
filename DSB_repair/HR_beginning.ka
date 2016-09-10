@@ -16,16 +16,19 @@
 %var: 'DNA-elongation' 1.0
 
 #DNAse
+#CRISPR DNA cleavage
 
 #Presynapsis
+#add MRX falloff
+#break the rule to 3 stages
 'MRX/N processing' \
-dna(upstream!1, downstream, pair!3), dna(downstream!1, pair!4, binding), dna(upstream!2, downstream, pair!3, binding!5), dna(downstream!2, pair!4), Mre11-Rad50-Xrs2(dna!5)\
-->  dna(upstream!1, downstream, pair), dna(downstream!1, pair!4, binding!5), dna(upstream, downstream, pair, binding), dna(downstream, pair!4), Mre11-Rad50-Xrs2(dna!5) \
+dna(upstream!1, downstream, pair!3, binding), dna(downstream!1, pair!4), dna(upstream!2, downstream, pair!3, binding!5), dna(downstream!2, pair!4, binding), Mre11-Rad50-Xrs2(dna!5)\
+->  dna(upstream!1, downstream, pair, binding), dna(downstream!1, pair!4), dna(upstream, downstream, pair, binding), dna(downstream, pair!4, binding!5), Mre11-Rad50-Xrs2(dna!5) \
 @ 'MRXprocessing'
 
   'RPA binding' \
-RPA(dna), dna(upstream, pair, binding)\
-->  RPA(dna!3), dna(upstream, pair, binding!3)\
+RPA(dna), dna(pair, binding)\
+->  RPA(dna!3), dna(pair, binding!3)\
 @ 'RPA-bind'
 
    'Rad51 dsDNA binding' \
@@ -44,19 +47,20 @@ Rad52(rad51!6), Rad51(rad52!6) \
 @ 'nucleation'
 
    'Rad51-Rad52 complex binding' \
-RPA(dna!3), Rad52(rad51!6), Rad51(rad52!6, dna), dna(upstream!1, pair, binding!3), dna(downstream!1, pair!4), dna(pair!4) \
- -> RPA(dna), Rad52(rad51!6), Rad51(rad52!6, dna!3), dna(upstream!1, pair, binding!3), dna(downstream!1, pair!4), dna(pair!4) \
+RPA(dna!3), Rad52(rad51!6), Rad51(rad52!6, dna), dna(pair, binding!3) \
+ -> RPA(dna), Rad52(rad51!6), Rad51(rad52!6, dna!3), dna(pair, binding!3) \
 @ 'Rad51-Rad52-bind'
 
    'Rad51 polymerization'  \
- Rad52(rad51!6), Rad51(rad52!6, dna!3, upstream), Rad51(dna, upstream, downstream), dna(upstream!1, pair, binding!3), dna(downstream!1, pair!4), dna(pair!4) \
- -> Rad52(rad51!6), Rad51(rad52!6, dna!3,upstream!7), Rad51(dna, upstream, downstream!7), dna(upstream!1, pair, binding!3), dna(downstream!1, pair!4), dna(pair!4) \
+ Rad52(rad51!6), Rad51(rad52!6, dna!3, upstream), Rad51(dna, upstream, downstream), dna(upstream!1, pair, binding!3), dna(downstream!1, pair, binding) \
+ -> Rad52(rad51!6), Rad51(rad52!6, dna!3,upstream!7), Rad51(dna!5, upstream, downstream!7), dna(upstream!1, pair, binding!3), dna(downstream!1, pair, binding!5) \
 @ 'Rad51-poly'
    
    #Rad55-Rad57 should not be binded
+   #clarify when Srs2 cleave the Rad51
    'Srs2-regulated dissociation' \
-Rad51(dna!1, med), dna(upstream!_, downstream!_, pair, binding!1), Srs2(rad51, rad55-rad57) -> \
-Rad51(dna, med!2), dna(upstream!_,  downstream!_, pair, binding), Srs2(rad51!2, rad55-rad57) \
+Rad51(dna!1, med), dna(pair, binding!1), Srs2(rad51, rad55-rad57) -> \
+Rad51(dna, med!2), dna(pair, binding), Srs2(rad51!2, rad55-rad57) \
 @ 'Rad51-dissociation'
 #^ :in_paper :DSB_repair/Rad55-Rad57%20paralogs%20functions.pdf; :on_page 4; :from_chunk 0; :to_chunk 1; :from_token 1; :to_token 1 .
 #I'm do not sure for the binding Rad55-Rad57 with Rad51. Alex

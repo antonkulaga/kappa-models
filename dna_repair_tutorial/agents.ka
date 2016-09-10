@@ -13,6 +13,7 @@
 %agent: MECP2(GmC)  #^ http://www.uniprot.org/uniprot/P51608
 
 #^ :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 7; :from_chunk 51; :to_chunk 64; :from_token 1; :to_token 5 .
+#^ :image :dna_repair_tutorial/about_DNA.jpg
 %agent: DNA( #double stranded DNA about kilobase long \
 	chr~closed~opened, #state of chromatin \
 	Base~mC~C~T~U~x, rd, #base of DNA, "x" means NO base\

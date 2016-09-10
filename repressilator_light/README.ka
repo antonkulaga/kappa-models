@@ -1,2 +1,14 @@
-### This is very simplified repressilator model###
-# in development
+### Repressilator model (simplified) ###
+#
+# It is a very simplified repressilator model
+
+# Repressilator is a 3-genes genetic circuit
+#^ :comment "more info about repressilator"; :in_paper :repressilator/Repressilator.pdf; :on_page 1; :from_chunk 146; :to_chunk 162; :from_token 8; :to_token 3 .
+#
+# that makes bacteria oscilate like in this microscope video:
+#^ :comment "Microscope video"; :video <https://www.youtube.com/watch?v=HFwSnqYC5LA>
+#^:comment "the oscilation period is more than an hour"; :in_paper :repressilator/Repressilator.pdf; :on_page 2; :from_chunk 253; :to_chunk 280; :from_token 1; :to_token 2 .
+
+#
+# Repressilator consists of 3 genes that inhibit each other:
+#^ :comment "Repressilator plasmid map: TetR inhibits Cl, Cl inhibits LacI, lacI inhibits TetR"; :image :repressilator_light/plasmid.png

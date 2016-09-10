@@ -1,8 +1,13 @@
 # Chapter 'Deamination'
 #
+# Deamination is the removal of an amine group from a molecule, it can occur spontaneously in DNA.
+# C can be deanimated into U and methylated C can be deanimated into T
+#
 #^ :comment "1 per second per billion bases"; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 4; :from_chunk 7; :to_chunk 19; :from_token 3; :to_token 2 .
 #^ #^ :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 11; :from_chunk 116; :to_chunk 130; :from_token 1; :to_token 5 .
 %var: 'deanim_rate' 1.e-2
 
+#^ :image :dna_repair_tutorial/deanimation.jpg
+#^ :image :dna_repair_tutorial/deanimation2.jpg
 'C base deamination' DNA(Base~C,status~ok) -> DNA(Base~U,status~dom) @ 'deanim_rate'
 'mC base deamination' DNA(Base~mC,status~ok) -> DNA(Base~T,status~dom) @ 'deanim_rate'
