@@ -21,7 +21,11 @@
 
 #CRISPR DNA cleavage
 
-#HDR has 3 main stages
+# HDR has 3 main stages
+# * Presynapsis
+# * Synapsis
+# * Postsynapsis
+#^:comment "more info about HDR stages"; :in_paper :DSB_repair/heyer2007.pdf; :on_page 11; :from_chunk 0; :to_chunk 16; :from_token 1; :to_token 13 .
 
 #^ http://repairtoire.genesilico.pl/Pathway/3/
 
@@ -37,6 +41,7 @@ dna(upstream!1, downstream, pair!3, binding), dna(downstream!1, pair!4), dna(ups
 ->  dna(upstream!1, downstream, pair, binding), dna(downstream!1, pair!4), dna(upstream, downstream, pair, binding), dna(downstream, pair!4, binding!5), Mre11-Rad50-Xrs2(dna!5) \
 @ 'MRXprocessing'
 
+#^ :in_paper DSB_repair/Rad54:%20the%20Swiss%20Army%20knife%20of%20homologous%20recombination.pdf; :on_page 3; :from_chunk 6; :to_chunk 9; :from_token 4; :to_token 6 .
   'RPA binding' \
 RPA(dna), dna(pair, binding)\
 ->  RPA(dna!3), dna(pair, binding!3)\

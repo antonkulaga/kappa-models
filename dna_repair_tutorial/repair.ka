@@ -4,28 +4,62 @@
 ### Recognition of DNA by TDG###
 #^:comment "TDG-DNA recognition"; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 8; :from_chunk 11; :to_chunk 60; :from_token 1; :to_token 10 .
 
+'DNA.base--N140.TDG (with CBP)' DNA(Base,status~dom,chr~opened),TDG(N140,rd!1,dnmt3a,lig),CBP(tdg!1,chr) ->\
+	DNA(Base!1,status~dom,chr~opened),TDG(N140!1,rd!2,dnmt3a,lig),CBP(tdg!2,chr) @ 1.0
+
+'DNA.base--N140.TDG (with Dmnt3a and CBP)' DNA(Base,status~dom,chr~opened),CBP(tdg!1,chr),TDG(N140,rd!1,dnmt3a!2,lig),Dnmt3a(dna,tdg!2) -> DNA(Base!2,status~dom,chr~opened),CBP(tdg!1,chr),TDG(N140!2,rd!1,dnmt3a!3,lig),Dnmt3a(dna,tdg!3) @ 1.0
+
+'DNA.base--N140.TDG(with APE1 and CBP)' DNA(Base,status~dom,chr~opened),CBP(tdg!1,chr),TDG(N140,rd!1,dnmt3a,lig!2),APE1_PolB(tdg!2,CAT) -> DNA(Base!2,status~dom,chr~opened),CBP(tdg!1,chr),TDG(N140!2,rd!1,dnmt3a,lig!3),APE1_PolB(tdg!3,CAT) @ 1.0
+
+'DNA.base--N140.TDG (with APE1 and Dnm3a and CBP)' DNA(Base,status~dom,chr~opened),CBP(tdg!1,chr),Dnmt3a(dna,tdg!2),TDG(N140,rd!1,dnmt3a!2,lig!3),APE1_PolB(tdg!3,CAT) -> DNA(Base!4,status~dom,chr~opened),CBP(tdg!1,chr),Dnmt3a(dna,tdg!2),TDG(N140!4,rd!1,dnmt3a!2,lig!3),APE1_PolB(tdg!3,CAT) @ 1.0
+
+### with free DNA.rd ###
+
 'DNA.base--N140.TDG (free DNA.rd)' DNA(Base,chr~opened,status~dom,rd),TDG(N140,rd,dnmt3a,lig) ->\
 	DNA(Base!1,chr~opened,status~dom,rd),TDG(N140!1,rd,dnmt3a,lig) @ 1.0
 
-'DNA.base--N140.TDG (with CBP)' DNA(Base,status~dom,chr~opened),TDG(N140,rd!1,dnmt3a,lig),CBP(tdg!1,chr) ->\
-	DNA(Base!1,status~dom,chr~opened),TDG(N140!1,rd!2,dnmt3a,lig),CBP(tdg!2,chr) @ 1.0
-'DNA.base--N140.TDG (with Dmnt3a, free rd)' DNA(Base,chr~opened,status~dom,rd),TDG(dnmt3a!1,rd,N140,lig),Dnmt3a(tdg!1,dna) -> DNA(Base!2,chr~opened,status~dom,rd),TDG(dnmt3a!1,rd,N140!2,lig),Dnmt3a(tdg!1,dna) @ 1.0
-'DNA.base--N140.TDG (with Dmnt3a and CBP)' DNA(Base,status~dom,chr~opened),CBP(tdg!1,chr),TDG(N140,rd!1,dnmt3a!2,lig),Dnmt3a(dna,tdg!2) -> DNA(Base!2,status~dom,chr~opened),CBP(tdg!1,chr),TDG(N140!2,rd!1,dnmt3a!3,lig),Dnmt3a(dna,tdg!3) @ 1.0
 
-'DNA.base--N140.TDG (with APE1, free rd)' DNA(Base,chr~opened,status~dom,rd),TDG(N140,rd,dnmt3a,lig!1),APE1_PolB(tdg!1,CAT) -> DNA(Base!2,chr~opened,status~dom,rd),TDG(N140!2,rd,dnmt3a,lig!1),APE1_PolB(tdg!1,CAT) @ 1.0
-'DNA.base--N140.TDG(with APE1 and CBP)' DNA(Base,status~dom,chr~opened),CBP(tdg!1,chr),TDG(N140,rd!1,dnmt3a,lig!2),APE1_PolB(tdg!2,CAT) -> DNA(Base!2,status~dom,chr~opened),CBP(tdg!1,chr),TDG(N140!2,rd!1,dnmt3a,lig!3),APE1_PolB(tdg!3,CAT) @ 1.0
+'DNA.base--N140.TDG (with Dmnt3a, free rd)' \
+	DNA(Base,chr~opened,status~dom,rd),TDG(dnmt3a!1,rd,N140,lig),Dnmt3a(tdg!1,dna) ->\
+    DNA(Base!2,chr~opened,status~dom,rd),TDG(dnmt3a!1,rd,N140!2,lig),Dnmt3a(tdg!1,dna) \
+    @ 1.0
 
-'DNA.base--N140.TDG (with Dnm3a and APE1, free rd)' DNA(Base,chr~opened,status~dom,rd),Dnmt3a(tdg!1,dna),TDG(dnmt3a!1,N140,rd,lig!2),APE1_PolB(tdg!2,CAT) -> DNA(Base!2,chr~opened,status~dom,rd),Dnmt3a(tdg!1,dna),TDG(dnmt3a!1,N140!2,rd,lig!3),APE1_PolB(tdg!3,CAT) @ 1.0
-'DNA.base--N140.TDG (with APE1 and Dnm3a and CBP)' DNA(Base,status~dom,chr~opened),CBP(tdg!1,chr),Dnmt3a(dna,tdg!2),TDG(N140,rd!1,dnmt3a!2,lig!3),APE1_PolB(tdg!3,CAT) -> DNA(Base!4,status~dom,chr~opened),CBP(tdg!1,chr),Dnmt3a(dna,tdg!2),TDG(N140!4,rd!1,dnmt3a!2,lig!3),APE1_PolB(tdg!3,CAT) @ 1.0
+'DNA.base--N140.TDG (with Dnm3a and APE1, free rd)'\
+	DNA(Base,chr~opened,status~dom,rd),Dnmt3a(tdg!1,dna),TDG(dnmt3a!1,N140,rd,lig!2),APE1_PolB(tdg!2,CAT) -> \
+    DNA(Base!2,chr~opened,status~dom,rd),Dnmt3a(tdg!1,dna),TDG(dnmt3a!1,N140!2,rd,lig!3),APE1_PolB(tdg!3,CAT) \
+    @ 1.0
 
+'DNA.base--N140.TDG (with APE1, free DNA.rd)' \
+	DNA(Base,chr~opened,status~dom,rd),TDG(N140,rd,dnmt3a,lig!1),APE1_PolB(tdg!1,CAT) ->\
+    DNA(Base!2,chr~opened,status~dom,rd),TDG(N140!2,rd,dnmt3a,lig!1),APE1_PolB(tdg!1,CAT)\
+    @ 1.0
 
-'DNA.base~T--N140.TDG (Dnmt3a and APE1 , connected rd)' DNA(status~dom,chr~opened,Base~T,rd!1),Dnmt3a(tdg!2,dna),TDG(rd!1,lig!3,dnmt3a!2,N140),APE1_PolB(tdg!3,CAT) -> DNA(status~dom,chr~opened,Base~T!3,rd!1),Dnmt3a(tdg!2,dna),TDG(rd!1,lig!4,dnmt3a!2,N140!3),APE1_PolB(tdg!4,CAT) @ 1.0
-'DNA.base~T--N140.TDG (with APE1, connected rd)' DNA(status~dom,chr~opened,Base~T,rd!1),TDG(rd!1,lig!2,dnmt3a,N140),APE1_PolB(tdg!2,CAT) -> DNA(status~dom,chr~opened,Base~T!2,rd!1),TDG(rd!1,lig!3,dnmt3a,N140!2),APE1_PolB(tdg!3,CAT) @ 1.0
-'DNA.base~T--N140.TDG (connected rd)' DNA(status~dom,chr~opened,Base~T,rd!1),TDG(N140,rd!1,dnmt3a,lig) -> DNA(status~dom,chr~opened,Base~T!1,rd!2),TDG(N140!1,rd!2,dnmt3a,lig) @ 1.e+3
-'DNA.base~T--N140.TDG (with Dmnt3a) DNA.base--N140.TDG' DNA(status~dom,chr~opened,Base~T,rd!1),TDG(N140,rd!1,dnmt3a!2,lig),Dnmt3a(tdg!2,dna) -> DNA(status~dom,chr~opened,Base~T!1,rd!2),TDG(N140!1,rd!2,dnmt3a!3,lig),Dnmt3a(tdg!3,dna) @ 1.e+3
+# DNA with T base makes rd connection
+# This rule separates repairing of methylates DNA from repair of unmethylated DNA:
+#^:comment "2 repair subpathways"; :image :dna_repair_tutorial/repair.jpg
 'DNA(T-G).rd--rd.TDG' DNA(Base~T!1,rd),TDG(N140!1,rd) -> DNA(Base~T!2,rd!1),TDG(N140!2,rd!1) @ 1.e+5
 
-# disconnections
+### with rd connection ###
+
+
+'DNA.base~T--N140.TDG (Dnmt3a and APE1 , connected rd)' \
+	DNA(status~dom,chr~opened,Base~T,rd!1),Dnmt3a(tdg!2,dna),TDG(rd!1,lig!3,dnmt3a!2,N140),APE1_PolB(tdg!3,CAT) ->\
+    DNA(status~dom,chr~opened,Base~T!3,rd!1),Dnmt3a(tdg!2,dna),TDG(rd!1,lig!4,dnmt3a!2,N140!3),APE1_PolB(tdg!4,CAT) \
+    @ 1.0
+
+'DNA.base~T--N140.TDG (with APE1, connected rd)' \
+	DNA(status~dom,chr~opened,Base~T,rd!1),TDG(rd!1,lig!2,dnmt3a,N140),APE1_PolB(tdg!2,CAT) -> \
+	DNA(status~dom,chr~opened,Base~T!2,rd!1),TDG(rd!1,lig!3,dnmt3a,N140!2),APE1_PolB(tdg!3,CAT)\
+    @ 1.0
+
+'DNA.base~T--N140.TDG (connected rd)'\
+	DNA(status~dom,chr~opened,Base~T,rd!1),TDG(N140,rd!1,dnmt3a,lig) ->\
+    DNA(status~dom,chr~opened,Base~T!1,rd!2),TDG(N140!1,rd!2,dnmt3a,lig)\
+    @ 1.e+3
+
+'DNA.base~T--N140.TDG (with Dmnt3a,connected rd) DNA.base--N140.TDG' DNA(status~dom,chr~opened,Base~T,rd!1),TDG(N140,rd!1,dnmt3a!2,lig),Dnmt3a(tdg!2,dna) -> DNA(status~dom,chr~opened,Base~T!1,rd!2),TDG(N140!1,rd!2,dnmt3a!3,lig),Dnmt3a(tdg!3,dna) @ 1.e+3
+
+
 'DNA.base+N140.TDG' DNA(Base!1),TDG(N140!1) -> DNA(Base),TDG(N140) @ 1.e-5
 'DNA.rd+rd.TDG Ref2' DNA(rd!1,Base!2),TDG(rd!1,N140!2,nc~act) -> DNA(rd,Base!1),TDG(rd,N140!1,nc~act) @ 1.e-5
 'DNA.rd+rd.TDG Ref3' DNA(rd!1),TDG(rd!1,nc~act,N140) -> DNA(rd),TDG(rd,nc~act,N140) @ 1.0
@@ -45,7 +79,7 @@
 #^ :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 13; :from_chunk 68; :to_chunk 73; :from_token 1; :to_token 8 .
 'TDG.lig+tdg.APE1' TDG(lig!1),APE1_PolB(tdg!1) -> TDG(lig),APE1_PolB(tdg) @ 1.e-3
 
-### Excision ###specific rate
+### Excision specific rate ###
 #^:comment "excision rules"; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 8; :from_chunk 61; :to_chunk 77; :from_token 1; :to_token 11 .
 #^ :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 9; :from_chunk 44; :to_chunk 53; :from_token 1; :to_token 6 .
 
@@ -54,12 +88,12 @@
 'T excision with swap' DNA(Base~T!1,status~dom,rd!2),TDG(N140!1,lig!3,rd!2),APE1_PolB(tdg!3,CAT) -> \
 	DNA(Base~x!3,status~hole,rd!2),TDG(N140,lig!1,rd!2),APE1_PolB(tdg!1,CAT!3) @ 1.e+4
 
-'Repair U' DNA(Base~U!1,status~dom),TDG(N140!1,lig) -> \
+'U excision' DNA(Base~U!1,status~dom),TDG(N140!1,lig) -> \
 	DNA(Base~x,status~hole),TDG(N140,lig) @ 1.e+5
-'Repair U with swap' DNA(Base~U!1,status~dom),TDG(N140!1,lig!2),APE1_PolB(tdg!2,CAT) -> \
+'U excision with swap' DNA(Base~U!1,status~dom),TDG(N140!1,lig!2),APE1_PolB(tdg!2,CAT) -> \
 	DNA(Base~x!2,status~hole),TDG(N140,lig!1),APE1_PolB(tdg!1,CAT!2) @ 1.e+4
 
-### APE1 connects to DNA ###
+### APE1 connects to DNA after excision ###
 'DNA(x-G)--CAT.APE1_PolB1 Ref1' APE1_PolB(CAT,tdg),DNA(Base~x,chr~opened) -> APE1_PolB(CAT!1,tdg),DNA(Base~x!1,chr~opened) @ 1.0
 'DNA(x-G)--CAT.APE1_PolB1 Ref2' APE1_PolB(CAT,tdg!1),DNA(Base~x,chr~opened),TDG(lig!1,N140,rd) -> APE1_PolB(CAT!1,tdg!2),DNA(Base~x!1,chr~opened),TDG(lig!2,N140,rd) @ 1.0
 'DNA(x-G)--CAT.APE1_PolB1 Ref3' APE1_PolB(CAT,tdg!1),DNA(Base~x,chr~opened,rd!2),TDG(lig!1,N140,rd!2) -> APE1_PolB(CAT!1,tdg!2),DNA(Base~x!1,chr~opened,rd!3),TDG(lig!2,N140,rd!3) @ 1.e+5
