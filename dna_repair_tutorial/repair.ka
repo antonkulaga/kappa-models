@@ -63,8 +63,13 @@
 
 'DNA.base~T--N140.TDG (with Dmnt3a,connected rd) DNA.base--N140.TDG' DNA(status~dom,chr~opened,Base~T,rd!1),TDG(N140,rd!1,dnmt3a!2,lig),Dnmt3a(tdg!2,dna) -> DNA(status~dom,chr~opened,Base~T!1,rd!2),TDG(N140!1,rd!2,dnmt3a!3,lig),Dnmt3a(tdg!3,dna) @ 1.e+3
 
+### DNA -TDG unbinding###
 
 'DNA.base+N140.TDG' DNA(Base!1),TDG(N140!1) -> DNA(Base),TDG(N140) @ 1.e-5
+
+#NOTE: disconnection of DNA and TDG rd-s depends on acytylation done by CBP, see:
+#^ :source :cbp-tdg.ka
+
 'DNA.rd+rd.TDG Ref2' DNA(rd!1,Base!2),TDG(rd!1,N140!2,nc~act) -> DNA(rd,Base!1),TDG(rd,N140!1,nc~act) @ 1.e-5
 'DNA.rd+rd.TDG Ref3' DNA(rd!1),TDG(rd!1,nc~act,N140) -> DNA(rd),TDG(rd,nc~act,N140) @ 1.0
 
