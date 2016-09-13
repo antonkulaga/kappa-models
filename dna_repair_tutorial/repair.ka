@@ -1,7 +1,11 @@
 #######
 # Chapter 'DNA repair'
 
-### Recognition of DNA by TDG###
+### Recognition of DNA by TDG ###
+#
+# Here are the rules that describe binding of the DNA to TDG in different circumstances
+# and with some other interacting partners
+
 #^:comment "TDG-DNA recognition"; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 8; :from_chunk 11; :to_chunk 60; :from_token 1; :to_token 10 .
 
 'DNA.base--N140.TDG (with CBP)' DNA(Base,status~dom,chr~opened),TDG(N140,rd!1,dnmt3a,lig),CBP(tdg!1,chr) ->\
@@ -17,7 +21,6 @@
 
 'DNA.base--N140.TDG (free DNA.rd)' DNA(Base,chr~opened,status~dom,rd),TDG(N140,rd,dnmt3a,lig) ->\
 	DNA(Base!1,chr~opened,status~dom,rd),TDG(N140!1,rd,dnmt3a,lig) @ 1.0
-
 
 'DNA.base--N140.TDG (with Dmnt3a, free rd)' \
 	DNA(Base,chr~opened,status~dom,rd),TDG(dnmt3a!1,rd,N140,lig),Dnmt3a(tdg!1,dna) ->\
@@ -37,6 +40,7 @@
 # DNA with T base makes rd connection
 # This rule separates repairing of methylates DNA from repair of unmethylated DNA:
 #^:comment "2 repair subpathways"; :image :dna_repair_tutorial/repair.jpg
+
 'DNA(T-G).rd--rd.TDG' DNA(Base~T!1,rd),TDG(N140!1,rd) -> DNA(Base~T!2,rd!1),TDG(N140!2,rd!1) @ 1.e+5
 
 ### with rd connection ###
