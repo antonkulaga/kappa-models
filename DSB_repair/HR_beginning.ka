@@ -3,6 +3,7 @@
 #
 #TODO: add KaSim recommended qoafitions instead of 1-s
 %var: 'MRXprocessing' 1.0
+%var: 'MRXbinding' 1.0
 %var: 'nucleation' 1.0
 %var: 'Rad51-dissociation' 1.0
 %var: 'Rad55-Rad57-mediation' 1.0
@@ -20,6 +21,7 @@
 
 
 #CRISPR DNA cleavage
+   'CRISPR-Cas9-mediated DNA cleavage'
 
 # HDR has 3 main stages
 # * Presynapsis
@@ -36,10 +38,15 @@
 #TODO: break the rule to 3 stages
 
 
-'MRX/N processing' \
-dna(upstream!1, downstream, pair!3, binding), dna(downstream!1, pair!4), dna(upstream!2, downstream, pair!3, binding!5), dna(downstream!2, pair!4, binding), Mre11-Rad50-Xrs2(dna!5)\
-->  dna(upstream!1, downstream, pair, binding), dna(downstream!1, pair!4), dna(upstream, downstream, pair, binding), dna(downstream, pair!4, binding!5), Mre11-Rad50-Xrs2(dna!5) \
-@ 'MRXprocessing'
+'MRX DSB binding' \
+dna(upstream, downstream!1, pair!3, binding), dna(upstream!1, pair!4), dna(upstream!2, downstream, pair!3, binding), dna(downstream!2, pair!4, binding), Mre11-Rad50-Xrs2(dna)\
+-> dna(upstream, downstream!1, pair!3, binding), dna(upstream!1, pair!4), dna(upstream!2, downstream, pair!3, binding!5), dna(downstream!2, pair!4, binding), Mre11-Rad50-Xrs2(dna!5)\
+@ 'MRXbinding'
+
+'MRX-mediated DNA cleavage/unwinding' \
+dna(upstream, downstream!1, pair!3, binding), dna(upstream!1, pair!4), dna(upstream!2, downstream, pair!3, binding!5), dna(downstream!2, pair!4, binding), Mre11-Rad50-Xrs2(dna!5)\
+-> dna(upstream, downstream!1, pair!3, binding!5), dna(upstream!1, pair!4), dna(upstream!2, downstream, pair!3, binding), dna(downstream!2, pair!4, binding), Mre11-Rad50-Xrs2(dna!5)\
+@ 'MRXbinding'
 
 #^ :in_paper DSB_repair/Rad54:%20the%20Swiss%20Army%20knife%20of%20homologous%20recombination.pdf; :on_page 3; :from_chunk 6; :to_chunk 9; :from_token 4; :to_token 6 .
   'RPA binding' \
@@ -104,8 +111,8 @@ Rad51(dna!1, med, upstream), dna(upstream, pair, binding!1), Rad54(rad51) \
 #Synapsis
 
    'Rad51-mediated homology search' \
-Rad51(dna!3,upstream!7), Rad51(dna, upstream, downstream!7, med!6),  Rad54(rad51!6, dna), dna(pair, upstream, binding!3), sisdna(homo, pair!2), sisdna(homo, pair!2, chr~closed) \
--> Rad51(dna!3,upstream!7), Rad51(dna!4, upstream, downstream!7, med!6), Rad54(rad51!6, dna!5), dna(pair, upstream, binding!3), sisdna(homo!4, pair!2), sisdna(homo, pair!2,chr~closed!5)\
+Rad51(dna!3,upstream!7), Rad51(dna, upstream, downstream!7, med!6),  Rad54(rad51!6, dna), dna(pair, upstream, binding!3), dna(binding, pair!2,  type~ps), dna(binding, pair!2, chr~closed, type~ps) \
+-> Rad51(dna!3,upstream!7), Rad51(dna!4, upstream, downstream!7, med!6), Rad54(rad51!6, dna!5), dna(pair, upstream, binding!3), dna(binding!4, pair!2,  type~ps), dna(binding, pair!2,chr~closed!5, type~ps)\
 @ 'homology-search'
 
 
@@ -115,26 +122,24 @@ Rad51(dna!3,upstream!7), Rad51(dna, upstream, downstream!7, med!6),  Rad54(rad51
 
 #chromatin open
    'Rad54 chromatin open' \
-Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair, upstream, binding!3), sisdna(homo!4, pair!2), sisdna(homo, pair!2, chr~closed!5) \
--> Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair!2, upstream, binding!3), sisdna(homo!4, pair!2), sisdna(homo, pair, chr~opened!5)\
+Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair, upstream, binding!3), dna(binding!4, pair!2, type~ps), dna(binding, pair!2, chr~closed!5, type~ps) \
+-> Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair!2, upstream, binding!3), dna(binding!4, pair!2, type~ps), dna(binding, pair, chr~closed!5, type~ps)\
 @ 'chromatin-open'
    
    'Single strand invasion, D-Loop forming' \
-Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair, upstream, binding!3), sisdna(homo!4, pair!2, chr~opened), sisdna(homo, pair!2, chr~opened!5) \
--> Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair!2, upstream, binding!3), sisdna(homo!4, pair!2, chr~opened), sisdna(homo, pair, chr~opened!5)\
+Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair, upstream, binding!3), dna(binding!4, pair!2, chr~opened, type~ps), dna(binding, pair!2, chr~opened!5, type~ps) \
+-> Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair!2, upstream, binding!3), dna(binding!4, pair!2, chr~opened, type~ps), dna(binding, pair, chr~opened!5, type~ps)\
 @ 'invasion'
 
 #Postsynapsis (do not ready yet)
 
  'Rad54-mediated Rad-51-dsDNA turnover' \
-Rad54(rad51!6, dna!_), Rad51(dna!3, med!6), dna(pair!2, binding!3), sisdna(pair!2) \
--> Rad54(rad51, dna!6), Rad51(dna, med), dna(pair!2, binding!6), sisdna(pair!2) \
+Rad54(rad51!6, dna!_), Rad51(dna!3, med!6), dna(pair!2, binding!3), dna(pair!2, type~ps) \
+-> Rad54(rad51, dna!6), Rad51(dna, med), dna(pair!2, binding!6), dna(pair!2, type~ps) \
 @ 'Rad51-turnover'
 
- 'DNA elongation by DNA-polymerase eta' \
-Rad51(dna!3,upstream!7), Rad51(dna!4, upstream, downstream!7, med), DNAPeta(dna, newdna), dna(pair, upstream, binding!3), sisdna(homo!4, pair!2), sisdna(homo, pair!2) \
--> Rad51(dna!3,upstream!7), Rad51(dna!4, upstream, downstream!7, med), DNAPeta(dna, newdna), dna(pair!2, upstream, binding!3), sisdna(homo!4, pair!2), sisdna(homo, pair)\
-@ 'DNA-elongation'
+# 'DNA elongation by DNA-polymerase eta' \
+#@ 'DNA-elongation'
 
 #1. Add chromatine opening by Rad54
 #2. Add DNA-pol eta, which interacts with Rad51

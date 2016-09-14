@@ -1,19 +1,20 @@
-#^ :in_paper DSB_repair/Rad54:%20the%20Swiss%20Army%20knife%20of%20homologous%20recombination.pdf; :on_page 3; :from_chunk 0; :to_chunk 0; :from_token 1; :to_token 1 .
+#^ :image :DSB_repair/DNA_chemical_structure.svg.png
+#If you edit this model - please  mean that upstream is to the 3' end, downstream - to 5'. It is important, really!
 #^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 11; :from_chunk 0; :to_chunk 7; :from_token 1; :to_token 5 .
 
 %agent: dna(\
-	upstream, # connects with DNASeq before current DNA\
-    downstream, # connects with DNASeq after current DNA\
+	upstream, # connects with DNASeq before current DNA - 3' end\
+    downstream, # connects with DNASeq after current DNA - 5' end\
     pair, #connects with the other strand, if pair site is free it means that we deal with ssDNA\
     binding, #transcription \
     chr~opened~closed, #chromatin state\
-    type #DNA type\
+    type~ps #DNA type for plasmid DNA)\
     )
-%agent: sisdna(upstream, downstream, dna, pair, homo, chr~opened~closed) #TODO: merge as subtype of DNA
 %agent: CRISPR-Cas9(dna) #^ :video https://www.youtube.com/watch?v=2pp17E4E-O8
 
 #HR initiation and beginning
 #%agent: Sgs1() ??
+#%agent: Exo1
 
 #%agent: Sws1() another mediator
 #Brca1 is used only in humans

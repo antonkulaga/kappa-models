@@ -12,20 +12,25 @@
 #^ :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 3; :from_chunk 0; :to_chunk 0; :from_token 1; :to_token 5 .
 %agent: MECP2(GmC)  #^ http://www.uniprot.org/uniprot/P51608
 
-#^ :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 7; :from_chunk 51; :to_chunk 64; :from_token 1; :to_token 5 .
+#^ :comment "double stranded DNA about kilobase long"; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 7; :from_chunk 51; :to_chunk 64; :from_token 1; :to_token 5 .
 #^ :image :dna_repair_tutorial/about_DNA.jpg
-%agent: DNA( #double stranded DNA about kilobase long \
-	chr~closed~opened, #state of chromatin \
-	Base~mC~C~T~U~x, rd, #base of DNA, "x" means NO base\
-    init~mC~C, \
-    status~ok~dom~hole\
+%agent: DNA( \
+	chr~closed~opened, # chr: state of a chromatin\
+	Base~mC~C~T~U~x, rd, # Base: nucleotide base under repair, value "x" means NO base\
+    init~mC~C, # init: technical site indicating methilation state of a base before deaminations\
+    status~ok~dom~hole #status in repair process\
     )
 
 #^ :comment "does the excision of faulty base"; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 5; :from_chunk 2; :to_chunk 20; :from_token 1; :to_token 1 .
-%agent: TDG(N140,rd~u~Ac,lig, dnmt3a, nc~act) #^ http://www.uniprot.org/uniprot/Q13569
+%agent: TDG(N140,\
+	rd~u~Ac,# rd: binds specific TG mismatch can be acetylated\
+    lig,\
+    dnmt3a,\
+    nc~act #almost not used in the model\
+    ) #^ http://www.uniprot.org/uniprot/Q13569
 
 #^ :comment "methylates Cs"; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 6; :from_chunk 104; :to_chunk 106; :from_token 2; :to_token 1 .
-%agent: Dnmt3a(tdg,dna) #^ http://www.uniprot.org/uniprot/Q6PJ37
+%agent: Dnmt3a(tdg, dna) #^ http://www.uniprot.org/uniprot/Q6PJ37
 
 #^:comment "fills in C after excision"; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 6; :from_chunk 101; :to_chunk 103; :from_token 2; :to_token 2 .
-%agent: APE1_PolB(tdg,CAT)
+%agent: APE1_PolB(tdg, CAT)
