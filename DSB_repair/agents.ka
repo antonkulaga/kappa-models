@@ -11,7 +11,7 @@
     type~ps #DNA type for plasmid DNA)\
     )
 %agent: Cas9(crispr) #^ :video https://www.youtube.com/watch?v=2pp17E4E-O8
-%agent: crRNA(dna, cas9) #RNA which search for complementary DNA
+%agent: crRNA(dna, cas9, rna) #RNA which search for complementary DNA
 
 #HR initiation and beginning
 #%agent: Sgs1() ??

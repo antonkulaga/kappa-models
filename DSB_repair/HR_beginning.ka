@@ -4,8 +4,9 @@
 #TODO: add KaSim recommended qoafitions instead of 1-s
 %var: 'crRNA-search' 1.0
 %var: 'Cas9-DNA-cleavage' 1.0
-%var: 'MRXprocessing' 1.0
-%var: 'MRXprocessing' 1.0
+%var: 'MRXunwinding' 1.0
+%var: 'MRXcleavage' 1.0
+%var: 'MRXfalloff' 1.0
 %var: 'MRXbinding' 1.0
 %var: 'nucleation' 1.0
 %var: 'Rad51-dissociation' 1.0
@@ -21,18 +22,21 @@
 %var: 'homology-search' 1.0
 %var: 'Rad51-turnover' 1.0
 %var: 'DNA-elongation' 1.0
+%var: 'DNA-ligation' 1.0
+%var: 'Lig-falloff' 1.0
+%var: 'Lig-add' 1.0
 
 
-#CRISPR DNA cleavage.
+### CRISPR DNA cleavage ###
    'crRNA complementary DNA search' \
-dna(upstream!1, pair!3), dna(downstream!1, pair!4) ,dna(downstream!2, pair!3), dna(upstream!2, pair!4), crRNA(dna), crRNA(dna) \
--> dna(upstream!1, pair!3), dna(downstream!1, pair!4), dna(downstream!2, pair), dna(upstream!2, pair), crRNA(dna!4), crRNA(dna!3) \
+dna(upstream!1, pair!3), dna(downstream!1, pair!4) ,dna(downstream!2, pair!3), dna(upstream!2, pair!4), crRNA(dna, rna!5), crRNA(dna, rna!5) \
+-> dna(upstream!1, pair!3), dna(downstream!1, pair!4), dna(downstream!2, pair), dna(upstream!2, pair), crRNA(dna!4, rna!5), crRNA(dna!3, rna!5) \
 @ 'crRNA-search'
 
 
-   'CRISPR-Cas9-mediated complementary DNA cleavage'
-dna(upstream!1, pair!3), dna(downstream!1, pair!4), dna(downstream!2, pair), dna(upstream!2, pair), crRNA(dna!4), crRNA(dna!3) \
--> dna(upstream!1, pair!3), dna(downstream!1, pair!4), dna(downstream!2, pair), dna(upstream!2, pair), crRNA(dna!4), crRNA(dna!3) \
+   'CRISPR-Cas9-mediated complementary DNA cleavage' \
+dna(upstream!1, pair!3), dna(downstream!1, pair!4), crRNA(dna!4, rna!5), crRNA(dna!3, cas9!6, rna!5), Cas9(crispr!6) \
+-> dna(upstream, pair!3), dna(downstream, pair!4), crRNA(dna!4, rna!5), crRNA(dna!3, cas9!6, rna!5), Cas9(crispr!6) \
 @ 'Cas9-DNA-cleavage'
 
 
@@ -46,20 +50,28 @@ dna(upstream!1, pair!3), dna(downstream!1, pair!4), dna(downstream!2, pair), dna
 
 ### Presynapsis ###
 
-#TODO: add MRX falloff
+#what is the mechanism of action of MRX?
+#add information about Dna2, Sgs2 and Exo1
 
-#TODO: break the rule to 3 stages
-
-
-'MRX DSB binding' \
+   'MRX DSB binding' \
 dna(upstream, downstream!1, pair!3, binding), dna(upstream!1, pair!4), dna(upstream!2, downstream, pair!3, binding), dna(downstream!2, pair!4, binding), Mre11-Rad50-Xrs2(dna)\
 -> dna(upstream, downstream!1, pair!3, binding), dna(upstream!1, pair!4), dna(upstream!2, downstream, pair!3, binding!5), dna(downstream!2, pair!4, binding), Mre11-Rad50-Xrs2(dna!5)\
 @ 'MRXbinding'
 
-'MRX-mediated DNA cleavage/unwinding' \
+   'MRX-mediated DNA unwinding' \
 dna(upstream, downstream!1, pair!3, binding), dna(upstream!1, pair!4), dna(upstream!2, downstream, pair!3, binding!5), dna(downstream!2, pair!4, binding), Mre11-Rad50-Xrs2(dna!5)\
--> dna(upstream, downstream!1, pair!3, binding!5), dna(upstream!1, pair!4), dna(upstream!2, downstream, pair!3, binding), dna(downstream!2, pair!4, binding), Mre11-Rad50-Xrs2(dna!5)\
-@ 'MRXbinding'
+-> dna(upstream, downstream!1, pair, binding), dna(upstream!1, pair!4), dna(upstream!2, downstream, pair, binding), dna(downstream!2, pair!4, binding!5), Mre11-Rad50-Xrs2(dna!5)\
+@ 'MRXunwinding'
+
+   'MRX-mediated DNA cleavage' \
+dna(upstream!2, downstream, pair, binding), dna(downstream!2, binding!5), Mre11-Rad50-Xrs2(dna!5)\
+-> dna(upstream, downstream, pair, binding), dna(downstream, binding!5), Mre11-Rad50-Xrs2(dna!5)\
+@ 'MRXcleavage'
+
+   'MRX falloff' \
+Mre11-Rad50-Xrs2(dna!5), dna(binding!5) \
+-> Mre11-Rad50-Xrs2(dna), dna(binding) \
+@ 'MRXfalloff'
 
 #^ :in_paper DSB_repair/Rad54:%20the%20Swiss%20Army%20knife%20of%20homologous%20recombination.pdf; :on_page 3; :from_chunk 6; :to_chunk 9; :from_token 4; :to_token 6 .
   'RPA binding' \
@@ -134,14 +146,15 @@ Rad51(dna!3,upstream!7), Rad51(dna, upstream, downstream!7, med!6),  Rad54(rad51
 
 
 #chromatin open
+#are there some chromatin here? We working with genes for transformation, aren't we?
    'Rad54 chromatin open' \
 Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair, upstream, binding!3), dna(binding!4, pair!2, type~ps), dna(binding, pair!2, chr~closed!5, type~ps) \
 -> Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair!2, upstream, binding!3), dna(binding!4, pair!2, type~ps), dna(binding, pair, chr~closed!5, type~ps)\
 @ 'chromatin-open'
    
    'Single strand invasion, D-Loop forming' \
-Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair, upstream, binding!3), dna(binding!4, pair!2, chr~opened, type~ps), dna(binding, pair!2, chr~opened!5, type~ps) \
--> Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair!2, upstream, binding!3), dna(binding!4, pair!2, chr~opened, type~ps), dna(binding, pair, chr~opened!5, type~ps)\
+Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair, upstream, chr~opened, binding!3), dna(binding!4, pair!2, chr~opened, type~ps), dna(binding, pair!2, chr~opened!5, type~ps) \
+-> Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream, downstream!7, med!6), dna(pair!2, upstream,chr~opened, binding!3), dna(binding!4, pair!2, chr~opened, type~ps), dna(binding, pair, chr~opened!5, type~ps)\
 @ 'invasion'
 
 #Postsynapsis (do not ready yet)
@@ -151,11 +164,29 @@ Rad54(rad51!6, dna!_), Rad51(dna!3, med!6), dna(pair!2, binding!3), dna(pair!2, 
 -> Rad54(rad51, dna!6), Rad51(dna, med), dna(pair!2, binding!6), dna(pair!2, type~ps) \
 @ 'Rad51-turnover'
 
-# 'DNA elongation by DNA-polymerase eta' \
-#@ 'DNA-elongation'
+#are there DNA elongation at all, or we just bind the plasmid DNA to genome DNA with ligase?
 
-#1. Add chromatine opening by Rad54
-#2. Add DNA-pol eta, which interacts with Rad51
-#3. Modify the Rad51 turnover (removal)
-#4. Add second end capture reaction, and start to build the models for each trifut
-#5. Annotate all
+#Add polymerase addition and falloff
+
+  'DNA elongation by DNA-polymerase eta' \
+DNAPeta(dna!5, newdna), dna(pair!4, upstream), dna(upstream!2, pair, type~ps, binding!5), dna(downstream!2, pair!4, type~ps) \
+-> DNAPeta(dna!5, newdna!6), dna(pair!4, upstream), dna(upstream!2, pair, type~ps, binding!5), dna(downstream!2, pair!4, type~ps), dna(pair, upstream, downstream, binding!6) \
+@ 'DNA-elongation'
+
+#Add ligase addition and falloff
+
+
+   'Ligase addition' \
+DNAlig(dna1, dna2), dna(binding, downstream!1), dna(binding, upstream!1) \
+-> DNAlig(dna1!6, dna2!7), dna(binding!6, downstream!1), dna(binding!7, upstream!1) \
+@ 'Lig-add'
+
+   'DNA ligation' \
+DNAlig(dna1!6, dna2!7), dna(pair!4, upstream, binding!7), dna(upstream!2, pair, type~ps, binding), dna(downstream!2, pair!4, type~ps), dna(pair, upstream, downstream, binding!6) \
+-> DNAlig(dna1!6, dna2!7), dna(pair!4, upstream!5, binding!7), dna(upstream!2, pair!3, type~ps, binding), dna(downstream!2, pair!4, type~ps), dna(pair!3, upstream, downstream!5, binding!6) \
+@ 'DNA-ligation'
+
+   'Ligase falloff' \
+DNAlig(dna1!6, dna2!7), dna(binding!6, downstream!1), dna(binding!7, upstream!1) \
+-> DNAlig(dna1, dna2), dna(binding, downstream!1), dna(binding, upstream!1) \
+@ 'Lig-falloff'
