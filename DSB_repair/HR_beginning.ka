@@ -2,6 +2,9 @@
 #Coefficients are unknown for me now.
 #
 #TODO: add KaSim recommended qoafitions instead of 1-s
+%var: 'crRNA-search' 1.0
+%var: 'Cas9-DNA-cleavage' 1.0
+%var: 'MRXprocessing' 1.0
 %var: 'MRXprocessing' 1.0
 %var: 'MRXbinding' 1.0
 %var: 'nucleation' 1.0
@@ -20,8 +23,18 @@
 %var: 'DNA-elongation' 1.0
 
 
-#CRISPR DNA cleavage
-   'CRISPR-Cas9-mediated DNA cleavage'
+#CRISPR DNA cleavage.
+   'crRNA complementary DNA search' \
+dna(upstream!1, pair!3), dna(downstream!1, pair!4) ,dna(downstream!2, pair!3), dna(upstream!2, pair!4), crRNA(dna), crRNA(dna) \
+-> dna(upstream!1, pair!3), dna(downstream!1, pair!4), dna(downstream!2, pair), dna(upstream!2, pair), crRNA(dna!4), crRNA(dna!3) \
+@ 'crRNA-search'
+
+
+   'CRISPR-Cas9-mediated complementary DNA cleavage'
+dna(upstream!1, pair!3), dna(downstream!1, pair!4), dna(downstream!2, pair), dna(upstream!2, pair), crRNA(dna!4), crRNA(dna!3) \
+-> dna(upstream!1, pair!3), dna(downstream!1, pair!4), dna(downstream!2, pair), dna(upstream!2, pair), crRNA(dna!4), crRNA(dna!3) \
+@ 'Cas9-DNA-cleavage'
+
 
 # HDR has 3 main stages
 # * Presynapsis
