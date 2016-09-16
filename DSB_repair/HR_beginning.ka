@@ -88,6 +88,7 @@ dna(pair!4, binding), dna(pair!4, binding), Rad51(dna)  \
 -> dna(pair!4, binding), dna(pair!4, binding!2), Rad51(dna!2) \
 @ 'Rad51-ds-bind'
 
+#^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 5; :from_chunk 60; :to_chunk 65; :from_token 12; :to_token 4 .
    'Rad51 ssDNA binding' \
 dna(pair, binding), Rad51(dna)  \
 -> dna(pair, binding!2), Rad51(dna!2) \
@@ -135,6 +136,8 @@ Rad51(dna!1, med, upstream), dna(upstream, pair, binding!1), Rad54(rad51) \
 
 #Synapsis
 
+#^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 19; :from_chunk 36; :to_chunk 45; :from_token 1; :to_token 13 .
+#^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 19; :from_chunk 48; :to_chunk 51; :from_token 2; :to_token 2 .
    'Rad51-mediated homology search' \
 Rad51(dna!3,upstream!7), Rad51(dna, upstream, downstream!7, med!6),  Rad54(rad51!6, dna), dna(pair, upstream, binding!3), dna(binding, pair!2,  type~ps), dna(binding, pair!2, chr~closed, type~ps) \
 -> Rad51(dna!3,upstream!7), Rad51(dna!4, upstream, downstream!7, med!6), Rad54(rad51!6, dna!5), dna(pair, upstream, binding!3), dna(binding!4, pair!2,  type~ps), dna(binding, pair!2,chr~closed!5, type~ps)\
