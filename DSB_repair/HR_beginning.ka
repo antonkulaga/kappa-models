@@ -93,11 +93,13 @@ dna(pair, binding), Rad51(dna)  \
 -> dna(pair, binding!2), Rad51(dna!2) \
 @ 'Rad51-ss-bind'
    
+#Rad52 binds to the broken DNA with MRX-complex and recruits Rad51  
    'Rad51 nucleation' \
-Rad52(rad51), Rad51(rad52) -> \
-Rad52(rad51!6), Rad51(rad52!6) \
+Rad52(rad51, dna!1), Rad51(rad52), dna(binding!1) -> \
+Rad52(rad51!6, dna!1), Rad51(rad52!6), dna(binding!1) \
 @ 'nucleation'
 
+#
    'Rad51-Rad52 complex binding' \
 RPA(dna!3), Rad52(rad51!6), Rad51(rad52!6, dna), dna(pair, binding!3) \
  -> RPA(dna), Rad52(rad51!6), Rad51(rad52!6, dna!3), dna(pair, binding!3) \
