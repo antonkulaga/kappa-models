@@ -1,0 +1,73 @@
+#The draft for several short but quantitative models with Rad55-Rad57, Rad51
+#and DNA, performed on the experiments of Dr. W.-D. Heyer et al. (see papers)
+ #^ :in_paper :Rad55-Rad57/Rad55-Rad57-supplement-1.pdf; :on_page 15; :from_chunk 12; :to_chunk 19; :from_token 1; :to_token 3 .
+
+
+%var: 'Rad51-ds-bind' 1
+%var: 'Rad51-ds-unbind' 1
+%var: 'Rad51-ss-bind' 1
+%var: 'Rad51-ss-unbind' 1
+
+#That coefficients was generated from that results below
+#using the length of Rad51 filaments.
+
+#The length of 1 bp in DNA is approx. 2 nm, and the Rad51 binds with approx. 3 bases.
+
+#I take the approx. length of Rad51 as 8 nm and calculate the number of Rads in
+#the filament, using this data
+#^ :in_paper :Rad55-Rad57/Rad51%20paralogs%20Rad55Rad57%20balance%20the%20anti-recombinase%20Srs2.pdf; :on_page 8; :from_chunk 0; :to_chunk 13; :from_token 1; :to_token 7 .
+%var: 'Rad51-poly' 1
+%var: 'Rad51-depoly' 1/5
+#There are 1 Rad55-Rad57 at 5-6 Rad51
+%var: 'Rad55-Rad57-inclusion' 1
+%var: 'Rad51-Rad55-Rad57-inclusion' 1
+%var: 'Rad55-Rad57-dissotiation' 1
+%var: 'Rad51-Srs2-dissociation' 1
+%var: 'Srs2-block' 1
+  
+  
+   'Rad51 dsDNA binding' \
+dna(pair!4, binding), dna(pair!4, binding), Rad51(dna)  \
+<-> dna(pair!4, binding), dna(pair!4, binding!2), Rad51(dna!2) \
+@ 'Rad51-ds-bind', 'Rad51-ds-unbind'
+
+#^ :in_paper :Rad55-Rad57/Rad55-Rad57-supplement-supplement_1.pdf; :on_page 3; :from_chunk 0; :to_chunk 18; :from_token 1; :to_token 11 .
+  'Rad51 ssDNA binding' \
+dna(pair, binding), Rad51(dna)  \
+<-> dna(pair, binding!2), Rad51(dna!2) \
+@ 'Rad51-ss-bind', 'Rad51-ss-unbind'
+
+
+#   'Rad51 nucleation' \
+#Rad52(rad51, dna!1), Rad51(rad52), dna(binding!1) \
+#-> Rad52(rad51!6, dna!1), Rad51(rad52!6), dna(binding!1) \
+#@ 'nucleation'
+
+   'Rad51 polymerization'  \
+Rad51(dna!3, upstream), Rad51(dna, upstream, downstream), dna(upstream!1, pair, binding!3), dna(downstream!1, pair, binding) \
+-> Rad51(dna!3,upstream!7), Rad51(dna!5, upstream, downstream!7), dna(upstream!1, pair, binding!3), dna(downstream!1, pair, binding!5) \
+@ 'Rad51-poly'
+   
+   
+   #^ :in_paper :Rad55-Rad57/Rad55-Rad57-supplement-supplement_1.pdf; :on_page 4; :from_chunk 0; :to_chunk 28; :from_token 1; :to_token 2 .
+   'Rad55-Rad57 inclusion' \
+dna(upstream!1, pair, binding!3), dna(downstream!1, pair, binding), Rad51(upstream, dna!3), Rad55-Rad57(rad51-down, dna)\
+-> dna(upstream!1, pair, binding!3), dna(downstream!1, pair, binding!5), Rad51(upstream!7, dna!3), Rad55-Rad57(rad51-down!7, dna!5) \
+@ 'Rad55-Rad57-inclusion'
+
+   'Rad51 to Rad55-Rad57 inclusion' \
+dna(upstream!1, pair, binding!3), dna(downstream!1, pair, binding!5), Rad51(downstream, dna!5), Rad55-Rad57(rad51-down!_, rad51-up, dna!3) \
+-> dna(upstream!1, pair, binding!3), dna(downstream!1, pair, binding!5), Rad51(downstream!6, dna!5), Rad55-Rad57(rad51-down!_, rad51-up!6, dna!3) \
+@ 'Rad51-Rad55-Rad57-inclusion'
+
+   'Srs2-regulated dissociation' \
+Rad51(dna!1, upstream), dna(pair, binding!1), Srs2(rad51) \
+-> Rad51(dna, upstream!2), dna(pair, binding), Srs2(rad51!2) \
+@ 'Rad51-Srs2-dissociation'
+
+
+
+
+
+
+

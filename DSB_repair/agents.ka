@@ -9,15 +9,16 @@
     pair, #connects with the other strand, if pair site is free it means that we deal with ssDNA\
     binding, #transcription \
     chr~opened~closed, #chromatin state\
-    type~ps #DNA type for plasmid DNA)\
+    type~ps, #DNA type for plasmid DNA\
+    crRNA~complement #add to all complementary DNA!!!\
     )
 %agent: Cas9(crispr) #^ :video https://www.youtube.com/watch?v=2pp17E4E-O8
 %agent: crRNA(dna, cas9, rna) #RNA which search for complementary DNA
 
 
-#%agent: Sgs1()
-#%agent: Exo1()
-#%agent: Dna2()
+%agent: Sgs1(dna, dna2) #beautiful, yeah? :)
+%agent: Exo1(dna)
+%agent: Dna2(dna)
 #This is the agents which act with MRX complex and process the DNA
 #^ https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2662516/
 
@@ -32,7 +33,7 @@
 
 #finds the DSB and signal the cell for it
 %agent: Mre11-Rad50-Xrs2(dna) #^ https://en.wikipedia.org/wiki/MRX_complex
-%agent: Rad51(dna, rad52, upstream, downstream, med) #^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 5; :from_chunk 53; :to_chunk 53; :from_token 2; :to_token 7 .
+%agent: Rad51(dna, rad52, upstream, downstream) #^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 5; :from_chunk 53; :to_chunk 53; :from_token 2; :to_token 7 .
 #Rad52 holds the broken DNA parts together. Then it recruits the Rad51, but not stabilize it (I didn't find the clear information for it)
 %agent: Rad52(dna, rad51) #^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 14; :from_chunk 12; :to_chunk 12; :from_token 1; :to_token 1 .
 %agent: RPA(dna) #^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 13; :from_chunk 13; :to_chunk 19; :from_token 1; :to_token 2 .
@@ -44,7 +45,7 @@
 %agent: Srs2(rad51, rad55-rad57) #^ :in_paper :DSB_repair/Rad55-Rad57%20paralogs%20functions.pdf; :on_page 3; :from_chunk 54; :to_chunk 60; :from_token 1; :to_token 11 .
 #Rad55-Rad57 complex builds in Rad51 filaments, preventing them from dissotiation and
 #from breaking by Srs2 anti-recombinase
-%agent: Rad55-Rad57(rad51, srs2) #^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 14; :from_chunk 56; :to_chunk 56; :from_token 1; :to_token 1 .
+%agent: Rad55-Rad57(rad51-up, rad51-down, srs2) #^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 14; :from_chunk 56; :to_chunk 56; :from_token 1; :to_token 1 .
 
 %agent: DNAPeta(dna, newdna, rad51)
 %agent: DNAlig(dna1, dna2)

@@ -1,3 +1,6 @@
 #Starting conditions
 
+#DNA which is complementary to our crRNA
 #dna(upstream, ), dna(downstream, pair!1)
+
+#all DNA

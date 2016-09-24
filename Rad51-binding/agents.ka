@@ -1,0 +1,12 @@
+%agent: Rad51(dna, rad52, upstream, downstream)
+%agent: RPA(dna)
+%agent: dna(\
+	upstream, # connects with DNASeq before current DNA - 3' end\
+    downstream, # connects with DNASeq after current DNA - 5' end\
+    pair, #connects with the other strand, if pair site is free it means that we deal with ssDNA\
+    binding, #transcription \
+    chr~opened~closed, #chromatin state\
+    type~ps, #DNA type for plasmid DNA\
+    crRNA~complement #add to all complementary DNA!!!\
+    )
+    

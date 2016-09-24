@@ -1,0 +1,13 @@
+%agent: A(a)
+%agent: B(b)
+
+%var: 'my_rate' 1
+
+%init: 5 B(b)
+%init: 5 A(a)
+
+A(a), B(b)-> A(a!1), B(b!1) @ 'my_rate'
+
+%obs: 'A' A()
+%obs: 'B' B()
+%obs: 'A.B' A(a!1), B(b!1)
