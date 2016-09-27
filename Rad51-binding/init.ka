@@ -1,5 +1,5 @@
 #see the table in Rad51-DNA.ka
 %init: 30000 Rad51() #with ssDNA
-%init: 2000 Rad51() #with dsDNA
+#%init: 2000 Rad51() #with dsDNA
 %init: 90000 dna(pair) #there are no exact concentration, but as the ratio is 1 Rad51/3 nt, I just multiplied the number of Rads on three
-%init: 6000 dna(pair?) #analogous for dsDNA
+#%init: 6000 dna(pair?) #analogous for dsDNA

@@ -1,13 +1,15 @@
 %agent: A(a)
 %agent: B(b)
 
-%var: 'my_rate' 1
+%var: 'my_rate' 100
+%var: 'A.B-degrad' 10
 
-%init: 5 B(b)
-%init: 5 A(a)
+%init: 5000 B(b)
+%init: 8000 A(a)
 
 A(a), B(b)-> A(a!1), B(b!1) @ 'my_rate'
+A(a!1), B(b!1) -> @ 'A.B-degrad'
 
-%obs: 'A' A()
-%obs: 'B' B()
-%obs: 'A.B' A(a!1), B(b!1)
+%obs: 'A' |A(a)|
+%obs: 'B' |B(b)|
+%obs: 'A.B' |A(a!1), B(b!1)|

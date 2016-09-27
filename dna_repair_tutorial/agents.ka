@@ -16,7 +16,8 @@
 #^ :image :dna_repair_tutorial/about_DNA.jpg
 %agent: DNA( \
 	chr~closed~opened, # chr: state of a chromatin\
-	Base~mC~C~T~U~x, rd, # Base: nucleotide base under repair, value "x" means NO base\
+	Base~mC~C~T~U~x, \
+    rd, # Base: nucleotide base under repair, value "x" means NO base\
     init~mC~C, # init: technical site indicating methilation state of a base before deaminations\
     status~ok~dom~hole #status in repair process\
     )

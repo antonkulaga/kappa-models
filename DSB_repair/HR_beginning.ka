@@ -113,7 +113,7 @@ RPA(dna!3), Rad52(rad51!6), Rad51(rad52!6, dna), dna(pair, binding!3) \
 -> RPA(dna), Rad52(rad51!6), Rad51(rad52!6, dna!3), dna(pair, binding!3) \
 @ 'Rad51-Rad52-bind'
 
-#Polymerization of the Read51 on ssDNA
+#Polymerization of the Rad51 on ssDNA
    'Rad51 polymerization'  \
 Rad51(dna!3, upstream), Rad51(dna, upstream, downstream), dna(upstream!1, pair, binding!3), dna(downstream!1, pair, binding) \
 -> Rad51(dna!3,upstream!7), Rad51(dna!5, upstream, downstream!7), dna(upstream!1, pair, binding!3), dna(downstream!1, pair, binding!5) \
