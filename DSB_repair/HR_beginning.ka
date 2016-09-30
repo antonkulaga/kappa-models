@@ -193,8 +193,8 @@ Rad51(dna!3,upstream!7), Rad51(dna!4, upstream, downstream!7), dna(pair, upstrea
 #Rad54 DNA unbind
 
  'Rad54-mediated Rad-51-dsDNA turnover' \
-Rad54(rad51!6, dna!_), Rad51(dna!3, upstream!6), dna(pair!2, binding!3), dna(pair!2, type~ps) \
--> Rad54(rad51, dna!6), Rad51(dna, upstream), dna(pair!2, binding!6), dna(pair!2, type~ps) \
+Rad54(rad51!6, dna), Rad51(dna!3, upstream!6), dna(pair!_, binding!3)\
+-> Rad54(rad51, dna!6), Rad51(dna, upstream), dna(pair!_, binding!6)\
 @ 'Rad51-turnover'
 
 #are there DNA elongation at all, or we just bind the plasmid DNA to genome DNA
