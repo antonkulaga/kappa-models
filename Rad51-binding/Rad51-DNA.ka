@@ -3,10 +3,7 @@
 
 #The rate constant is here
 # https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2175369/table/T6/
-%var: 'Rad51-ds-bind' 8000
-%var: 'Rad51-ds-unbind' 450
-%var: 'Rad51-ss-bind' 840
-%var: 'Rad51-ss-unbind' 3
+
   
  
    'Rad51 dsDNA binding' \
@@ -20,7 +17,7 @@ dna(pair, binding), Rad51(dna)  \
 @ 'Rad51-ss-bind', 'Rad51-ss-unbind'
  
  
-%obs: 'Rad51' Rad51(dna)
+
  
  
  

@@ -1,0 +1,15 @@
+### CRISPR DNA cleavage ###
+   #crRNA complementary DNA search - should be written
+
+   'crRNA complementary DNA binding' \
+dna(upstream!1, pair!3,  crRNA~complement), dna(downstream!1, pair!4,  crRNA~complement) ,dna(downstream!2, pair!3), dna(upstream!2, pair!4), crRNA(dna, rna!5), crRNA(dna, rna!5) \
+-> dna(upstream!1, pair!3, crRNA~complement), dna(downstream!1, pair!4, crRNA~complement), dna(downstream!2, pair), dna(upstream!2, pair), crRNA(dna!4, rna!5), crRNA(dna!3, rna!5) \
+@ 'crRNA-search'
+
+
+   'CRISPR-Cas9-mediated complementary DNA cleavage' \
+dna(upstream!1, pair!3,  crRNA~complement), dna(downstream!1, pair!4,  crRNA~complement), crRNA(dna!4, rna!5), crRNA(dna!3, cas9!6, rna!5), Cas9(crispr!6) \
+-> dna(upstream, pair!3,  crRNA~complement), dna(downstream, pair!4,  crRNA~complement), crRNA(dna!4, rna!5), crRNA(dna!3, cas9!6, rna!5), Cas9(crispr!6) \
+@ 'Cas9-DNA-cleavage'
+
+   #crRNA-DNA heteroduplex breaking

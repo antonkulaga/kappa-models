@@ -1,6 +1,23 @@
 %var: 'Avogadro' 6.02*10^23
 %var: 'yeast_vol' 4*10^-14 
 
+#That coefficients should be generated from that results below
+#using the length of Rad51 filaments.
+
+#The length of 1 bp in DNA is approx. 2 nm, and the Rad51 binds with approx. 3 bases.
+
+#I take the approx. length of Rad51 as 8 nm and calculate the number of Rads in
+#the filament, using this data
+#^ :in_paper :Rad55-Rad57/Rad51%20paralogs%20Rad55Rad57%20balance%20the%20anti-recombinase%20Srs2.pdf; :on_page 8; :from_chunk 0; :to_chunk 13; :from_token 1; :to_token 7 .
+%var: 'Rad51-poly' 1
+%var: 'Rad51-depoly' 1/5
+#There are 1 Rad55-Rad57 at 5-6 Rad51
+%var: 'Rad55-Rad57-inclusion' 1
+%var: 'Rad51-Rad55-Rad57-inclusion' 1
+%var: 'Rad55-Rad57-dissotiation' 1
+%var: 'Rad51-Srs2-dissociation' 1
+%var: 'Srs2-block' 1
+
 #The results are here
 #^ :in_paper :Rad55-Rad57/Rad55-Rad57-supplement-1.pdf; :on_page 12; :from_chunk 12; :to_chunk 12; :from_token 1; :to_token 2 .
 

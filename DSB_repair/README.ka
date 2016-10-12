@@ -1,4 +1,9 @@
-### This is a model of Double stranded breaks (DSB) ###
+### This is a model of Double stranded breaks repair (DSB) ###
+#Firstly, we perform dsDNA cleavage with Cas9 restrictase, directed by crRNA (CRISPR-cleavage.ka)
+#Then, we have 3 main stages of HDR with strand invasion into our vector DNA
+# * Presynapsis (DSB-processing.ka, Rad51-binding.ka, Anti-recombinase-pathway.ka)
+# * Synapsis (Strand-invasion.ka)
+# * Postsynapsis (DNA-insertion.ka, Holliday-resolution.ka)
 #
 #
 # It is on the very early stage of development: many interactiosn are missing or wrong, 
@@ -9,7 +14,12 @@
 #
 #^:comment "about HDR"; :in_paper :DSB_repair/heyer2007.pdf; :on_page 1; :from_chunk 28; :to_chunk 53; :from_token 1; :to_token 10 .
 #
-# The pathways of our interest is Homologues recombination pathway
+# The pathways of our interest is Homologous recombination pathway
 # as it allows us to insert DNA templates that we prepared beforehand.
 # Inducing HDR repair can instrease efficiency of DNA editing with
 # CRISPR/CAS9 and other tools.
+#
+
+#^:comment "more info about HDR stages"; :in_paper :DSB_repair/heyer2007.pdf; :on_page 11; :from_chunk 0; :to_chunk 16; :from_token 1; :to_token 13 .
+
+#^ http://repairtoire.genesilico.pl/Pathway/3/

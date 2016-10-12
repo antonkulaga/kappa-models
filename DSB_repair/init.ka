@@ -1,5 +1,32 @@
 #Starting conditions
 
+%var: 'crRNA-search' 1.0
+%var: 'Cas9-DNA-cleavage' 1.0
+%var: 'MRXunwinding' 1.0
+%var: 'MRXcleavage' 1.0
+%var: 'MRXfalloff' 1.0
+%var: 'MRXbinding' 1.0
+%var: 'nucleation' 1.0
+%var: 'Rad51-Srs2-dissociation' 1.0
+%var: 'RPA-bind' 10.0
+%var: 'Rad51-Rad52-bind' 1.0
+%var: 'Rad51-ss-bind' 1.0
+%var: 'Rad51-ss-unbind' 1.0
+%var: 'Rad51-ds-bind' 1.0
+%var: 'Rad51-ds-unbind' 1.0
+%var: 'Rad51-poly' 1.0
+%var: 'Rad55-Rad57-inclusion' 1.0
+%var: 'Rad51-Rad55-Rad57-inclusion' 1.0
+%var: 'Rad54-Rad51-binding' 1.0
+%var: 'invasion' 1.0
+%var: 'chromatin-open' 1.0
+%var: 'homology-search' 1.0
+%var: 'Rad51-turnover' 1.0
+%var: 'DNA-elongation' 1.0
+%var: 'DNA-ligation' 1.0
+%var: 'Lig-falloff' 1.0
+%var: 'Lig-add' 1.0
+
 #DNA which is complementary to our crRNA
 #dna(upstream, ), dna(downstream, pair!1)
 

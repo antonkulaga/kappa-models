@@ -1,0 +1,19 @@
+   #Rad55-Rad57 should not be binded
+   #clarify when Srs2 cleave the Rad51
+   'Srs2-regulated dissociation' \
+Rad51(dna!1, upstream), dna(pair, binding!1), Srs2(rad51) \
+-> Rad51(dna, upstream!2), dna(pair, binding), Srs2(rad51!2) \
+@ 'Rad51-Srs2-dissociation'
+#^ :in_paper :DSB_repair/Rad55-Rad57%20paralogs%20functions.pdf; :on_page 4; :from_chunk 0; :to_chunk 1; :from_token 1; :to_token 1 .
+
+#This complex, Rad55-Rad57, inserts to the Rad51 filaments, stabilize it and blocks the Srs2 recombinase
+   'Rad55-Rad57 inclusion' \
+Rad51(upstream), Rad55-Rad57(rad51-down, rad51-up)\
+-> Rad51(upstream!7), Rad55-Rad57(rad51-down!7, rad51-up) \
+@ 'Rad55-Rad57-inclusion'
+
+   'Rad51 to Rad55-Rad57 inclusion' \
+Rad51(downstream), Rad55-Rad57(rad51-down!_, rad51-up) \
+-> Rad51(downstream!5), Rad55-Rad57(rad51-down!_, rad51-up!5) \
+@ 'Rad51-Rad55-Rad57-inclusion'
+#^:image http://www.nature.com/nature/journal/v479/n7372/images/nature10522-f2.2.jpg

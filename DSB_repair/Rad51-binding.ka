@@ -1,0 +1,42 @@
+### Rad51 rules ###
+#^:comment "Rad51 pathway"; :image :DSB_repair/rad_51_pathway.jpg
+
+#side effect reaction
+   'Rad51 dsDNA binding' \
+dna(pair!4, binding), dna(pair!4, binding), Rad51(dna)  \
+<-> dna(pair!4, binding), dna(pair!4, binding!2), Rad51(dna!2) \
+@ 'Rad51-ds-bind', 'Rad51-ds-unbind'
+
+#^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 5; :from_chunk 60; :to_chunk 65; :from_token 12; :to_token 4 .
+   'Rad51 ssDNA binding' \
+dna(pair, binding), Rad51(dna)  \
+<-> dna(pair, binding!2), Rad51(dna!2) \
+@ 'Rad51-ss-bind', 'Rad51-ss-unbind'
+   
+#Rad52 binds to the broken DNA with MRX-complex and recruits Rad51
+   'Rad51 nucleation' \
+Rad52(rad51, dna!1), Rad51(rad52), dna(binding!1) \
+-> Rad52(rad51!6, dna!1), Rad51(rad52!6), dna(binding!1) \
+@ 'nucleation'
+
+#may be this complex is not need or should be edited
+   'Rad51-Rad52 complex binding' \
+RPA(dna!3), Rad52(rad51!6), Rad51(rad52!6, dna), dna(pair, binding!3) \
+-> RPA(dna), Rad52(rad51!6), Rad51(rad52!6, dna!3), dna(pair, binding!3) \
+@ 'Rad51-Rad52-bind'
+
+#Polymerization of the Rad51 on ssDNA
+   'Rad51 polymerization'  \
+Rad51(dna!3, upstream), Rad51(dna, upstream, downstream), dna(upstream!1, pair, binding!3), dna(downstream!1, pair, binding) \
+-> Rad51(dna!3,upstream!7), Rad51(dna!5, upstream, downstream!7), dna(upstream!1, pair, binding!3), dna(downstream!1, pair, binding!5) \
+@ 'Rad51-poly'
+
+   'Rad54 binding' \
+Rad51(dna!1, upstream), dna(upstream, pair, binding!1), Rad54(rad51) \
+-> Rad51(dna!1, upstream!2), dna(upstream, pair, binding!1), Rad54(rad51!2) \
+@ 'Rad54-Rad51-binding'
+#^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 19; :from_chunk 5; :to_chunk 5; :from_token 5; :to_token 9 .
+#there are unclear here about binding site of Rad54
+
+#^ :in_paper DSB_repair/Rad54:%20the%20Swiss%20Army%20knife%20of%20homologous%20recombination.pdf; :on_page 5; :from_chunk 129; :to_chunk 135; :from_token 5; :to_token 7 .
+#here: Rad54 binds to the Rad51 on the ending nucleotide - before the DSB

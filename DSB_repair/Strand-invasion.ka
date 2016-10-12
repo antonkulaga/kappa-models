@@ -1,0 +1,39 @@
+#Synapsis
+
+#how the complementarity is searching?
+#how Rad54 unwind the sister DNA?
+#
+
+#^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 19; :from_chunk 36; :to_chunk 45; :from_token 1; :to_token 13 .
+#^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 19; :from_chunk 48; :to_chunk 51; :from_token 2; :to_token 2 .
+   'Rad51-mediated homology search' \
+Rad51(dna!3,upstream!7), Rad51(dna, upstream!6, downstream!7),  Rad54(rad51!6, dna), dna(pair, upstream, binding!3), dna(binding, pair!2,  type~ps), dna(binding, pair!2, chr~closed, type~ps) \
+-> Rad51(dna!3,upstream!7), Rad51(dna!4, upstream!6, downstream!7), Rad54(rad51!6, dna!5), dna(pair, upstream, binding!3), dna(binding!4, pair!2,  type~ps), dna(binding, pair!2,chr~closed!5, type~ps)\
+@ 'homology-search'
+
+
+#need to determine the role of Rad54 in DNA binding and homology search
+#^ :in_paper :DSB_repair/heyer2007.pdf; :on_page 20; :from_chunk 14; :to_chunk 21; :from_token 8; :to_token 3 .
+
+
+#chromatin open
+#are there some chromatin here? We working with genes for transformation, aren't we?
+   'Rad54 chromatin open' \
+Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream!6, downstream!7), dna(pair, upstream, binding!3), dna(binding!4, pair!2, type~ps), dna(binding, pair!2, chr~closed!5, type~ps) \
+-> Rad51(dna!3,upstream!7), Rad54(rad51!6, dna!5), Rad51(dna!4, upstream!6, downstream!7), dna(pair!2, upstream, binding!3), dna(binding!4, pair!2, type~ps), dna(binding, pair, chr~closed!5, type~ps)\
+@ 'chromatin-open'
+   
+   'Single strand invasion, D-Loop forming' \
+Rad51(dna!3,upstream!7), Rad51(dna!4, upstream, downstream!7), dna(pair, upstream, chr~opened, binding!3), dna(binding!4, pair!2, chr~opened, type~ps), dna(binding, pair!2, chr~opened, type~ps) \
+-> Rad51(dna!3,upstream!7), Rad51(dna!4, upstream, downstream!7), dna(pair!2, upstream,chr~opened, binding!3), dna(binding!4, pair!2, chr~opened, type~ps), dna(binding, pair, chr~opened, type~ps)\
+@ 'invasion'
+
+#Postsynapsis (do not ready yet)
+
+#Rad54 binds Rad51
+#Rad54 DNA unbind
+
+ 'Rad54-mediated Rad-51-dsDNA turnover' \
+Rad54(rad51!6, dna), Rad51(dna!3, upstream!6), dna(pair!_, binding!3)\
+-> Rad54(rad51, dna!6), Rad51(dna, upstream), dna(pair!_, binding!6)\
+@ 'Rad51-turnover'

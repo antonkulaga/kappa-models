@@ -1,0 +1,31 @@
+### DSB processing by MRX complex and other nucleases/helicases###
+
+#what is the mechanism of action of MRX?
+#add information about Dna2, Sgs1, Exo1 and Sae2
+
+   'MRX DSB binding' \
+dna(upstream, downstream!1, pair!3, binding), dna(upstream!1, pair!4), dna(upstream!2, downstream, pair!3, binding), dna(downstream!2, pair!4, binding), Mre11-Rad50-Xrs2(dna)\
+-> dna(upstream, downstream!1, pair!3, binding), dna(upstream!1, pair!4), dna(upstream!2, downstream, pair!3, binding!5), dna(downstream!2, pair!4, binding), Mre11-Rad50-Xrs2(dna!5)\
+@ 'MRXbinding'
+
+   'MRX-mediated DNA unwinding' \
+dna(upstream, downstream!1, pair!3, binding), dna(upstream!1, pair!4), dna(upstream!2, downstream, pair!3, binding!5), dna(downstream!2, pair!4, binding), Mre11-Rad50-Xrs2(dna!5)\
+-> dna(upstream, downstream!1, pair, binding), dna(upstream!1, pair!4), dna(upstream!2, downstream, pair, binding), dna(downstream!2, pair!4, binding!5), Mre11-Rad50-Xrs2(dna!5)\
+@ 'MRXunwinding'
+
+   'MRX-mediated DNA cleavage' \
+dna(upstream!2, downstream, pair, binding), dna(downstream!2, binding!5), Mre11-Rad50-Xrs2(dna!5)\
+-> dna(upstream, downstream, pair, binding), dna(downstream, binding!5), Mre11-Rad50-Xrs2(dna!5)\
+@ 'MRXcleavage'
+
+   'MRX falloff' \
+Mre11-Rad50-Xrs2(dna!5), dna(binding!5) \
+-> Mre11-Rad50-Xrs2(dna), dna(binding) \
+@ 'MRXfalloff'
+#information is unclear
+
+#^ :in_paper DSB_repair/Rad54:%20the%20Swiss%20Army%20knife%20of%20homologous%20recombination.pdf; :on_page 3; :from_chunk 6; :to_chunk 9; :from_token 4; :to_token 6 .
+  'RPA binding' \
+RPA(dna), dna(pair, binding)\
+->  RPA(dna!3), dna(pair, binding!3)\
+@ 'RPA-bind'

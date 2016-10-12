@@ -1,0 +1,24 @@
+#are there DNA elongation at all, or we just bind the plasmid DNA to genome DNA
+#with ligase?
+
+#Add polymerase addition and falloff
+
+  'DNA elongation by DNA-polymerase eta' \
+DNAPeta(dna!5, newdna), dna(pair!4, upstream), dna(upstream!2, pair, type~ps, binding!5), dna(downstream!2, pair!4, type~ps) \
+-> DNAPeta(dna!5, newdna!6), dna(pair!4, upstream), dna(upstream!2, pair, type~ps, binding!5), dna(downstream!2, pair!4, type~ps), dna(pair, upstream, downstream, binding!6) \
+@ 'DNA-elongation'
+
+   'Ligase addition' \
+DNAlig(dna1, dna2), dna(binding), dna(binding) \
+-> DNAlig(dna1!6, dna2!7), dna(binding!6), dna(binding!7) \
+@ 'Lig-add'
+
+   'DNA ligation' \
+DNAlig(dna1!6, dna2!7), dna(pair!4, upstream, binding!7), dna(upstream!2, pair, type~ps, binding), dna(downstream!2, pair!4, type~ps), dna(pair, upstream, downstream, binding!6) \
+-> DNAlig(dna1!6, dna2!7), dna(pair!4, upstream!5, binding!7), dna(upstream!2, pair!3, type~ps, binding), dna(downstream!2, pair!4, type~ps), dna(pair!3, upstream, downstream!5, binding!6) \
+@ 'DNA-ligation'
+
+   'Ligase falloff' \
+DNAlig(dna1!6, dna2!7), dna(binding!6, downstream!1), dna(binding!7, upstream!1) \
+-> DNAlig(dna1, dna2), dna(binding, downstream!1), dna(binding, upstream!1) \
+@ 'Lig-falloff'
