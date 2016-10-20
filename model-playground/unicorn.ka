@@ -1,0 +1,16 @@
+%agent: A(x, c) 
+%agent: B(x)
+%agent: С(x1~u~p,x2~u~p)
+'a.b' A(x), B(x) -> A(x!1), B(x!1) @ 'on_rate'
+'a..b' A(x!1), B(x!1) -> A(x), B(x)@ 'off_rate'
+'ab.c' A(x!_,c), C(x1~u) -> A(x!_,c!2), C(x1~u!2) @'on_rate'
+'mod˽x2' A(x,c!1), C(x1~p, x2~u!1) -> A(x,c), C(x1~p, x2~p)@ mod_rate
+%var: 'on_rate' 1. 0E-4
+%var: 'off_rate' 0.1
+%var: 'mod_rate' 1
+%obs: 'AB' |A(x!x.B)|
+%obs: 'Cuu' |C(x1~u, x2~u)|
+%obs: 'Cpu' |C(x1~p, x2~u)|
+%obs: 'Cpp' |C(x1~p, x2~p)|
+%init: 1000 A(), B()
+%init: 10000 C()

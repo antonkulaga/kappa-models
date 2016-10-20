@@ -3,10 +3,16 @@
 #what is the mechanism of action of MRX?
 #add information about Dna2, Sgs1, Exo1 and Sae2
 
+
    'MRX DSB binding' \
-dna(upstream, downstream!1, pair!3, binding), dna(upstream!1, pair!4), dna(upstream!2, downstream, pair!3, binding), dna(downstream!2, pair!4, binding), Mre11-Rad50-Xrs2(dna)\
--> dna(upstream, downstream!1, pair!3, binding), dna(upstream!1, pair!4), dna(upstream!2, downstream, pair!3, binding!5), dna(downstream!2, pair!4, binding), Mre11-Rad50-Xrs2(dna!5)\
+dna(pair, binding), Mre11-Rad50-Xrs2(dna)\
+-> dna(pair, binding!5), Mre11-Rad50-Xrs2(dna!5)\
 @ 'MRXbinding'
+
+   'Sae2 MRX binding' \
+dna(pair, binding), Mre11-Rad50-Xrs2(dna)\
+-> dna(pair, binding!5), Mre11-Rad50-Xrs2(dna!5)\
+@ 'Sae2-binding'
 
    'MRX-mediated DNA unwinding' \
 dna(upstream, downstream!1, pair!3, binding), dna(upstream!1, pair!4), dna(upstream!2, downstream, pair!3, binding!5), dna(downstream!2, pair!4, binding), Mre11-Rad50-Xrs2(dna!5)\
@@ -14,9 +20,16 @@ dna(upstream, downstream!1, pair!3, binding), dna(upstream!1, pair!4), dna(upstr
 @ 'MRXunwinding'
 
    'MRX-mediated DNA cleavage' \
-dna(upstream!2, downstream, pair, binding), dna(downstream!2, binding!5), Mre11-Rad50-Xrs2(dna!5)\
--> dna(upstream, downstream, pair, binding), dna(downstream, binding!5), Mre11-Rad50-Xrs2(dna!5)\
-@ 'MRXcleavage'
+dna(downstream!2, upstream, pair, binding!5), dna(upstream!2, binding), Mre11-Rad50-Xrs2(dna!5, sae2!_)\
+-> dna(downstream, upstream, pair, binding), dna(upstream, binding!5), Mre11-Rad50-Xrs2(dna!5, sae2!_)\
+@ 'MRXcleavage-with-Sae2'
+
+#Sgs1 binding
+#Sgs1 unwinding
+#Dna2 binding
+#Dna2 cleavage
+#Exo1 binding
+#Exo1 cleavage
 
    'MRX falloff' \
 Mre11-Rad50-Xrs2(dna!5), dna(binding!5) \

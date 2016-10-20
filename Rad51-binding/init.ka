@@ -1,13 +1,14 @@
+
+
+
 #see the table in Rad51-DNA.ka
 %init: 30000 Rad51() #with ssDNA
-#%init: 2000 Rad51() #with dsDNA
-%init: 90000 dna(pair) #there are no exact concentration, but as the ratio is 1 Rad51/3 nt, I just multiplied the number of Rads on three
-#%init: 6000 dna(pair?) #analogous for dsDNA
+%init: 90000 dna(pair) #there are no exact concentration,but 
 
-%var: 'Rad51-ds-bind' 1
-%var: 'Rad51-ds-unbind' 10e-2
-%var: 'Rad51-ss-bind' 10
-%var: 'Rad51-ss-unbind' 10e-1
 
-%obs: 'Rad51' Rad51(dna)
-%obs: 'Rad51-filaments' Rad51(dna!_)
+%var: 'Rad51-ss-bind' 10E-1
+%var: 'Rad51-ss-unbind' 10
+%var: 'Rad51-ss-growth' 10E-4 #page 10 supplements
+
+%obs: 'Rad51-nuclei' Rad51(dna, upstream, downstream)
+%obs: 'Rad51-filaments' Rad51(dna, upstream, downstream)

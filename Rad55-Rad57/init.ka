@@ -30,8 +30,8 @@
 #We will use the intracellular 
 #1 nM => 24 molecules/S. cerevisae cell,1 microM = 24000 molecules
 
-%init: 2.34*10^-6*'Avogadro'*'yeast_vol' Rad51()
-%init: 7*10^-6*'Avogadro'*'yeast_vol' dna()
-%init: 0.43*10^-6*'Avogadro'*'yeast_vol' Rad55-Rad57()
-%init: 0.40*10^-6*'Avogadro'*'yeast_vol' Srs2()
-%init: 0.21*10^-6*'Avogadro'*'yeast_vol' RPA()
+%init: 2.34*10^-16*'Avogadro' Rad51()
+%init: 7*10^-16*'Avogadro' dna()
+%init: 0.43*10^-16*'Avogadro' Rad55-Rad57()
+%init: 0.40*10^-16*'Avogadro' Srs2()
+%init: 0.21*10^-16*'Avogadro' RPA()

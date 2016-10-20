@@ -26,7 +26,7 @@
 %var: 'synth'   0.1
 %var: 'binding' 0.1
 %var: 'unbinding' 0.0001
-%var: 'degrad' 0.001
+%var: 'degrad' 0.01
 
 'LacI.Lac' pLac(binding),LacI(dna) <-> pLac(binding!1000),LacI(dna!1000) @ 'binding' ,'unbinding'
 'tetR.synthesis' pLac(binding) -> pLac(binding), TetR() @ 'synth'

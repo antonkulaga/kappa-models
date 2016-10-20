@@ -8,5 +8,4 @@
     chr~opened~closed, #chromatin state\
     type~ps, #DNA type for plasmid DNA\
     crRNA~complement #add to all complementary DNA!!!\
-    )
-    
+)    

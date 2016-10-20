@@ -5,5 +5,8 @@
 #%init: 50  Dnmt3a(tdg,dna) почему нету связей? белки?
 
 #%init: 50  TDG(dnmt3a,N140,nc~actчто это?,lig?,rd~u)
-#
-#
+%agent: A(x, c) 
+%agent: B(x)
+%agent: С(x1~u~p,x2~u~p)
+'a.b' A(x), B(x) -> A(x!1), B(x!1) @ 'on_rate'
+'a..b' A(x!1), B(x!1) -> A(x), B(x)@ 'off_rate'

@@ -1,0 +1,25 @@
+# ### Signatures
+%agent: A(x,c) # Declaration of agent A
+%agent: B(x) # Declaration of B
+%agent: C(x1~u~p,x2~u~p) # Declaration of Cwith 2 modifiable sites
+# ### Rules
+'A and B' A(x), B(x) <-> A(x!1), B(x!1) @ 'on_rate', 'off_rate'
+'AB binds C' A(x!_, c), C(x1~u) -> A(x!_, c!2), C(x1~u!2)  @ 'ABC-on_rate'
+'modify x1 site' A(c!2), C(x1~u!2) -> A(c), C(x1~p) @ 'mod_rate'
+'A binds C' A(x, c), C(x2~u) -> A(x, c!2), C(x2~u!2)  @ 'AC-on_rate'
+'modify x2 site' A(c!2), C(x2~u!2) -> A(c), C(x2~p) @ 'mod_rate'
+
+# ### Variables
+%var: 'on_rate' 1E-4 # per molecule per second
+%var: 'ABC-on_rate' 1E-4
+%var: 'AC-on_rate' 1E-4
+%var: 'off_rate' 0.1 # per second
+%var: 'mod_rate' 1 # per second
+
+%obs: 'AB' |A(x!x.B)|
+%obs: 'Cuu' |C(x1~u,x2~u)|
+%obs: 'Cpu' |C(x1~p,x2~u)|
+%obs: 'Cpp' |C(x1~p,x2~p)|
+# ### Initial conditions
+%init: 1000 A() ,B()
+%init: 10000 C()

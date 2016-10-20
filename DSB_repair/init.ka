@@ -3,9 +3,10 @@
 %var: 'crRNA-search' 1.0
 %var: 'Cas9-DNA-cleavage' 1.0
 %var: 'MRXunwinding' 1.0
-%var: 'MRXcleavage' 1.0
+%var: 'MRXcleavage-with-Sae2' 1.0
 %var: 'MRXfalloff' 1.0
 %var: 'MRXbinding' 1.0
+%var: 'Sae2-binding' 1.0
 %var: 'nucleation' 1.0
 %var: 'Rad51-Srs2-dissociation' 1.0
 %var: 'RPA-bind' 10.0

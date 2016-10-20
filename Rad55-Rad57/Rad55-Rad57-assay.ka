@@ -39,7 +39,7 @@ dna(upstream!1, pair, binding!3), dna(downstream!1, pair, binding), Rad51(upstre
 -> dna(upstream!1, pair, binding!3), dna(downstream!1, pair, binding!5), Rad51(upstream!7, dna!3), Rad55-Rad57(rad51-down!7, dna!5) \
 @ 'Rad55-Rad57-inclusion'
 
-   'Rad51 to Rad55-Rad57 inclusion' \
+   'Rad51 to Rad55-Rad57 inclbusion' \
 dna(upstream!1, pair, binding!3), dna(downstream!1, pair, binding!5), Rad51(downstream, dna!5), Rad55-Rad57(rad51-down!_, rad51-up, dna!3) \
 -> dna(upstream!1, pair, binding!3), dna(downstream!1, pair, binding!5), Rad51(downstream!6, dna!5), Rad55-Rad57(rad51-down!_, rad51-up!6, dna!3) \
 @ 'Rad51-Rad55-Rad57-inclusion'
