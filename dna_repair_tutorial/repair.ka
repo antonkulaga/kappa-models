@@ -115,3 +115,7 @@
 #^:comment "remethylation"; :in_paper :dna_repair_tutorial/Kri_etal09.pdf; :on_page 9; :from_chunk 79; :to_chunk 82; :from_token 1; :to_token 1 .
 
 'C base remethylation' Dnmt3a(dna!3),DNA(Base~C!3) -> Dnmt3a(dna),DNA(Base~mC) @ 1.e+3
+
+
+%mod: [true] do $TRACK 'C base remethylation'[true]
+%mod: [true] do $TRACK 'Correct mC'[true]

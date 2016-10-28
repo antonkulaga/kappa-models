@@ -25,6 +25,3 @@
 
 %obs: 'brokenC' DNA(Base~U,status~dom)
 %obs: 'brokenmC' DNA(Base~U,status~dom)
-
-# Stories:
-#%story: 'C base remethylation'

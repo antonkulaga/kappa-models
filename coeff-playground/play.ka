@@ -1,15 +1,10 @@
-%agent: A(a)
-%agent: B(b)
+%agent: DNA(up, down)
 
-%var: 'my_rate' 100
-%var: 'A.B-degrad' 10
+'connect' DNA(down), DNA(up) -> DNA(down!1), DNA(up!1) @ 0.01 (0)
 
-%init: 5000 B(b)
-%init: 8000 A(a)
+%obs: 'free' |DNA(up,down)|
+%obs: 'connected' |DNA(down!1), DNA(up!1)|
 
-A(a), B(b)-> A(a!1), B(b!1) @ 'my_rate'
-A(a!1), B(b!1) -> @ 'A.B-degrad'
+%init: 1000 DNA(up, down)
 
-%obs: 'A' |A(a)|
-%obs: 'B' |B(b)|
-%obs: 'A.B' |A(a!1), B(b!1)|
+%mod: ( ([E] + [E-]) / [Emax] > 0.8) do $SNAPSHOT "foo_snapshot"

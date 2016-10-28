@@ -6,26 +6,18 @@
 
   
  
-#^:comment "The rate of Rad51 nucleation, where Rad51 forms nuclei with approx. 4-5 Rads per nucleus"; :in_paper :Rad51-binding/Visualization%20and%20quantification%20of%20nascent%20RAD51%20filament%20formation%20at%20single-monomer%20resolution.pdf; :on_page 2; :from_chunk 98; :to_chunk 170; :from_token 1; :to_token 5 .
-
 
   'Rad51-ssDNA nucleation I' \
-dna(pair, binding), Rad51(dna)  \
-<-> dna(pair, binding!2), Rad51(dna!2) \
-@ 'Rad51-ss-bind', 'Rad51-ss-unbind'
+dna(pair, binding), Rad51(dna, upstream, downstream)  \
+<-> dna(pair, binding!2), Rad51(dna!2, upstream, downstream) \
+@ 'Rad51-ss-nucleate', 'Rad51-ss-unbind'
  
  
  #^:comment "The rate of Rad51 filament growth per nucleus"; :in_paper :Rad51-binding/Visualization%20and%20quantification%20of%20nascent%20RAD51%20filament%20formation%20at%20single-monomer%20resolution.pdf; :on_page 4; :from_chunk 37; :to_chunk 72; :from_token 2; :to_token 1 .
 
   'Rad51-ssDNA filament growth' \
-Rad51(dna!_, upstream), Rad51(dna,downstream, upstream)  \
-<-> Rad51(dna!_, upstream!1), Rad51(dna, downstream!1, upstream) \
-@ 'Rad51-ss-growth', 'Rad51-ss-unbind'
- 
- 
-
- 
- 
- 
+Rad51(dna!_, upstream), Rad51(dna, downstream, upstream), dna(pair, binding)  \
+<-> Rad51(dna!_, upstream!1), Rad51(dna!2, downstream!1, upstream), dna(pair, binding!2) \
+@ 'Rad51-ss-growth', 'Rad51-ss-degradation'
  
  

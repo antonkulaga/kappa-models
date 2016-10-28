@@ -1,14 +1,28 @@
 
+%var: 'dna-amount' 26236  #there are no exact concentration, but using the length of DNA
+#on the figure above and assuming that there are 2 nuclei in 77 second, and k = 3.3*10^-7,
+#we can calculate that the length is approx. (2/77)/3.3*10^-7 = 78709.
+#And remember - we use DNA agent as 3-nucleutide sequence!
+
+%var: 'Av' 6.02E23
+%var: 'rad51-conc' 12.5E-9 #the concentration from the tab
 
 
 #see the table in Rad51-DNA.ka
-%init: 30000 Rad51() #with ssDNA
-%init: 90000 dna(pair) #there are no exact concentration,but 
+#^ :in_paper :Rad51-binding/Visualization%20and%20quantification%20suppl.pdf; :on_page 9; :from_chunk 103; :to_chunk 109; :from_token 2; :to_token 23 .
 
+%init: 'Av' *'rad51-conc' Rad51() #use the data from KaSim manual about transferring concentrations
+#into molecules (page 23), for the yeast cells - 
+%init: 'dna-amount' dna(pair)
 
-%var: 'Rad51-ss-bind' 10E-1
-%var: 'Rad51-ss-unbind' 10
-%var: 'Rad51-ss-growth' 10E-4 #page 10 supplements
+#^:comment "nucleation rate and its dependance"; :in_paper :Rad51-binding/Visualization%20and%20quantification%20of%20nascent%20RAD51%20filament%20formation%20at%20single-monomer%20resolution.pdf; :on_page 2; :from_chunk 144; :to_chunk 170; :from_token 1; :to_token 5 .
 
-%obs: 'Rad51-nuclei' Rad51(dna, upstream, downstream)
-%obs: 'Rad51-filaments' Rad51(dna, upstream, downstream)
+%var: 'Rad51-ss-nucleate' 1E-8*'rad51-conc'^1.5*'dna-amount'*3
+%var: 'Rad51-ss-unbind' 0.1
+%var: 'Rad51-ss-growth' 8.1E-4 #see the table again
+%var: 'Rad51-ss-degradation' 0.01
+
+%obs: 'Rad51-nuclei' |Rad51(dna!_, downstream)|
+%obs: 'Rad51-filaments' |Rad51(dna!_, downstream!_)|
+
+%mod: ( ([E] + [E-]) / [Emax] > 0.99) do $SNAPSHOT "foo_snapshot"
