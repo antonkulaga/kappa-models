@@ -1,10 +1,11 @@
 %agent: DNA(up, down)
 
-'connect' DNA(down), DNA(up) -> DNA(down!1), DNA(up!1) @ 0.01 (0)
+'connect' DNA(down), DNA(up) -> DNA(down!1), DNA(up!1) @ 0.1
+'synth' -> DNA() @ 0.1
 
 %obs: 'free' |DNA(up,down)|
 %obs: 'connected' |DNA(down!1), DNA(up!1)|
 
-%init: 1000 DNA(up, down)
+%init: 0 DNA(up, down)
 
-%mod: ( ([E] + [E-]) / [Emax] > 0.8) do $SNAPSHOT "foo_snapshot"
+%mod: ( ([E] + [E-]) / [Emax] = 1) do $SNAPSHOT "foo_snapshot"

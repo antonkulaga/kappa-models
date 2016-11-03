@@ -44,11 +44,7 @@
 %obs: 'TetR' TetR()
 %obs: 'cI' cI()
 
-#%obs: 'pLac<->LacI' pLac(binding!1), LacI(dna!1)
-#%obs: 'pTet<->TetR' pTet(binding!1), TetR(dna!1)
-#%obs: 'pL<->CI' pL(binding!1), cI(dna!1)
-
 #### Initial conditions 
 %init: 25 pLac(binding),pTet(binding),pL(binding)
 
-%mod: [true] do $FLUX "flux" [true]
+#%mod: [true] do $FLUX "flux" [true]

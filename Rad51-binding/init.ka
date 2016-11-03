@@ -4,7 +4,7 @@
 #we can calculate that the length is approx. (2/77)/3.3*10^-7 = 78709.
 #And remember - we use DNA agent as 3-nucleutide sequence!
 
-%var: 'Av' 6.02E23
+%var: 'Av' 6.02E20
 %var: 'rad51-conc' 12.5E-9 #the concentration from the tab
 
 
